@@ -1,17 +1,16 @@
-
 <!DOCTYPE html>
 <html lang="hy">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>ARMAN — Barber & Grooming</title>
+  <title>Barber Arman — Men's Hair & Grooming</title>
+
   <meta
     name="description"
-    content="Arman Barber — տղամարդկանց սանրվածք, մորուքի ձևավորում և խնամք։ Այգավան, Արարատի մարզ։"
+    content="Barber Arman — տղամարդկանց սանրվածք, մորուքի ձևավորում և խնամք։ Այգավան, Արարատի մարզ։"
   />
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -21,24 +20,35 @@
   />
 
   <style>
+
+    /* =========================================================
+       VARIABLES
+    ========================================================= */
+
     :root {
-      --black: #070707;
-      --black-soft: #0d0d0d;
-      --black-card: #111111;
+      --black: #060606;
+      --black-2: #0b0b0b;
+      --black-3: #111111;
+
       --gold: #c9a45c;
-      --gold-light: #e8c982;
-      --gold-dark: #80652f;
-      --white: #f5f2eb;
-      --muted: #99958d;
-      --border: rgba(201, 164, 92, 0.22);
+      --gold-light: #e8ca88;
+      --gold-dark: #80642e;
+
+      --white: #f5f1e8;
+      --muted: #88847d;
+
+      --border: rgba(201,164,92,.22);
 
       --serif: "Cormorant Garamond", Georgia, serif;
       --sans: "Manrope", "Noto Sans Armenian", Arial, sans-serif;
 
-      --container: 1180px;
-      --radius: 3px;
-      --transition: 0.45s cubic-bezier(.2,.8,.2,1);
+      --ease: cubic-bezier(.2,.8,.2,1);
     }
+
+
+    /* =========================================================
+       RESET
+    ========================================================= */
 
     * {
       margin: 0;
@@ -73,33 +83,39 @@
       text-decoration: none;
     }
 
+    button {
+      font: inherit;
+    }
+
     img {
       display: block;
       width: 100%;
     }
 
-    button {
-      font: inherit;
-    }
-
     .container {
       width: min(1180px, calc(100% - 40px));
-      margin: 0 auto;
+      margin: auto;
     }
 
-    /* =========================================
+
+    /* =========================================================
        LOADER
-    ========================================= */
+    ========================================================= */
 
     .loader {
       position: fixed;
       inset: 0;
       z-index: 9999;
-      background: #050505;
+
       display: flex;
-      align-items: center;
       justify-content: center;
-      transition: opacity 0.8s ease, visibility 0.8s ease;
+      align-items: center;
+
+      background: #050505;
+
+      transition:
+        opacity .8s ease,
+        visibility .8s ease;
     }
 
     .loader.hide {
@@ -107,116 +123,133 @@
       visibility: hidden;
     }
 
-    .loader-inner {
+    .loader-content {
       text-align: center;
     }
 
     .loader-logo {
       font-family: var(--serif);
-      color: var(--gold);
-      font-size: clamp(42px, 8vw, 80px);
-      letter-spacing: 0.15em;
+      color: var(--gold-light);
+
+      font-size: 70px;
+      letter-spacing: .18em;
+
       animation: loaderPulse 1.5s infinite;
     }
 
     .loader-line {
       width: 120px;
       height: 1px;
+
+      margin: 12px auto;
+
       background: var(--gold);
-      margin: 15px auto;
-      transform-origin: left;
+
       animation: loaderLine 1.5s infinite;
     }
 
-    .loader-text {
-      color: #777;
-      font-size: 10px;
-      letter-spacing: 0.35em;
+    .loader-sub {
+      color: #68645e;
+
+      font-size: 9px;
+      letter-spacing: .35em;
       text-transform: uppercase;
     }
 
     @keyframes loaderPulse {
       50% {
-        opacity: 0.45;
+        opacity: .45;
       }
     }
 
     @keyframes loaderLine {
-      0%, 100% {
-        transform: scaleX(0.3);
+      0%,100% {
+        transform: scaleX(.25);
       }
+
       50% {
         transform: scaleX(1);
       }
     }
 
-    /* =========================================
-       CUSTOM CURSOR
-    ========================================= */
+
+    /* =========================================================
+       CURSOR
+    ========================================================= */
 
     .cursor {
-      width: 8px;
-      height: 8px;
       position: fixed;
+
+      width: 7px;
+      height: 7px;
+
       border-radius: 50%;
+
       background: var(--gold);
+
       pointer-events: none;
+
       z-index: 10000;
-      transform: translate(-50%, -50%);
-      transition: width .25s ease, height .25s ease;
+
+      transform: translate(-50%,-50%);
+
       mix-blend-mode: difference;
     }
 
     .cursor-ring {
+      position: fixed;
+
       width: 32px;
       height: 32px;
-      position: fixed;
-      border: 1px solid rgba(201, 164, 92, .65);
+
+      border: 1px solid rgba(201,164,92,.65);
+
       border-radius: 50%;
+
       pointer-events: none;
+
       z-index: 9999;
-      transform: translate(-50%, -50%);
-      transition: width .35s ease, height .35s ease;
+
+      transform: translate(-50%,-50%);
     }
 
-    body.cursor-hover .cursor {
-      width: 18px;
-      height: 18px;
-    }
+    @media(max-width:900px) {
 
-    body.cursor-hover .cursor-ring {
-      width: 55px;
-      height: 55px;
-    }
-
-    @media (max-width: 900px) {
       .cursor,
       .cursor-ring {
-        display: none;
+        display:none;
       }
+
     }
 
-    /* =========================================
-       NAVBAR
-    ========================================= */
+
+    /* =========================================================
+       HEADER
+    ========================================================= */
 
     header {
       position: fixed;
+
+      width: 100%;
       top: 0;
       left: 0;
-      width: 100%;
+
       z-index: 1000;
-      transition: var(--transition);
+
+      transition: .45s var(--ease);
     }
 
     header.scrolled {
-      background: rgba(5, 5, 5, .92);
+      background: rgba(5,5,5,.92);
+
       backdrop-filter: blur(18px);
-      border-bottom: 1px solid rgba(201, 164, 92, .12);
+
+      border-bottom: 1px solid rgba(201,164,92,.12);
     }
 
     .nav {
       height: 88px;
+
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -224,1186 +257,1592 @@
 
     .logo {
       font-family: var(--serif);
-      font-size: 32px;
-      letter-spacing: .18em;
+
+      font-size: 30px;
+
+      letter-spacing: .16em;
+
       color: var(--gold-light);
-      font-weight: 600;
     }
 
-    .logo span {
+    .logo small {
       display: block;
+
+      margin-top: -6px;
+
       font-family: var(--sans);
-      font-size: 8px;
+
+      font-size: 7px;
+
       letter-spacing: .42em;
-      color: #8e8a82;
-      margin-top: -5px;
+
+      color: #777;
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 30px;
+      gap: 28px;
     }
 
     .nav-links a {
       position: relative;
-      color: #aaa;
-      font-size: 12px;
-      letter-spacing: .08em;
-      transition: color .3s ease;
-    }
 
-    .nav-links a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -8px;
-      width: 0;
-      height: 1px;
-      background: var(--gold);
-      transition: width .3s ease;
+      color: #999;
+
+      font-size: 11px;
+
+      letter-spacing: .08em;
+
+      transition: .3s;
     }
 
     .nav-links a:hover {
       color: var(--gold-light);
     }
 
+    .nav-links a::after {
+      content:"";
+
+      position:absolute;
+
+      left:0;
+      bottom:-7px;
+
+      width:0;
+      height:1px;
+
+      background:var(--gold);
+
+      transition:.3s;
+    }
+
     .nav-links a:hover::after {
-      width: 100%;
+      width:100%;
     }
 
-    .language-switch {
-      display: flex;
-      gap: 5px;
-      border: 1px solid var(--border);
-      padding: 4px;
-      margin-left: 12px;
+
+    /* LANGUAGE */
+
+    .languages {
+      display:flex;
+
+      border:1px solid var(--border);
+
+      padding:3px;
     }
 
-    .lang-btn {
-      border: 0;
-      background: transparent;
-      color: #777;
-      padding: 6px 9px;
-      cursor: pointer;
-      font-size: 10px;
-      letter-spacing: .1em;
+    .lang {
+      border:0;
+
+      padding:5px 8px;
+
+      background:transparent;
+
+      color:#666;
+
+      cursor:pointer;
+
+      font-size:9px;
     }
 
-    .lang-btn.active {
-      color: #000;
-      background: var(--gold);
+    .lang.active {
+      background:var(--gold);
+
+      color:#000;
     }
 
-    .mobile-menu-btn {
-      display: none;
-      border: 0;
-      background: transparent;
-      cursor: pointer;
-      width: 42px;
-      height: 42px;
+
+    /* MOBILE MENU */
+
+    .menu-button {
+      display:none;
+
+      width:42px;
+      height:42px;
+
+      background:none;
+      border:0;
+
+      cursor:pointer;
+
+      z-index:1001;
     }
 
-    .mobile-menu-btn span {
-      display: block;
-      width: 24px;
-      height: 1px;
-      background: var(--gold);
-      margin: 6px auto;
-      transition: .3s;
+    .menu-button span {
+      display:block;
+
+      width:24px;
+      height:1px;
+
+      background:var(--gold);
+
+      margin:6px auto;
+
+      transition:.3s;
     }
 
-    /* =========================================
+
+    /* =========================================================
        HERO
-    ========================================= */
+    ========================================================= */
 
     .hero {
-      min-height: 100vh;
-      position: relative;
-      display: flex;
-      align-items: center;
-      overflow: hidden;
+      min-height:100vh;
+
+      position:relative;
+
+      display:flex;
+      align-items:center;
+
+      overflow:hidden;
+
       background:
-        radial-gradient(circle at 80% 45%, rgba(145, 105, 37, .13), transparent 35%),
+        radial-gradient(
+          circle at 75% 45%,
+          rgba(201,164,92,.13),
+          transparent 32%
+        ),
         #070707;
     }
 
-    .hero::before {
-      content: "";
-      position: absolute;
-      width: 700px;
-      height: 700px;
-      right: -300px;
-      top: 50%;
-      transform: translateY(-50%);
-      border: 1px solid rgba(201,164,92,.08);
-      border-radius: 50%;
-      box-shadow:
-        0 0 0 80px rgba(201,164,92,.025),
-        0 0 0 160px rgba(201,164,92,.018);
-      animation: rotateCircle 30s linear infinite;
-    }
-
-    @keyframes rotateCircle {
-      to {
-        transform: translateY(-50%) rotate(360deg);
-      }
-    }
-
     .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(90deg, rgba(0,0,0,.85) 0%, rgba(0,0,0,.45) 45%, rgba(0,0,0,.15) 100%);
-      pointer-events: none;
-    }
+      content:"";
 
-    .hero-grid {
-      position: absolute;
-      inset: 0;
-      opacity: .07;
-      background-image:
-        linear-gradient(rgba(255,255,255,.12) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.12) 1px, transparent 1px);
-      background-size: 80px 80px;
-      mask-image: linear-gradient(to right, black, transparent);
+      position:absolute;
+
+      inset:0;
+
+      background:
+        linear-gradient(
+          90deg,
+          rgba(0,0,0,.92),
+          rgba(0,0,0,.58) 45%,
+          rgba(0,0,0,.18)
+        );
+
+      z-index:1;
     }
 
     .hero-photo {
-      position: absolute;
-      right: 0;
-      top: 0;
-      width: 57%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      opacity: .88;
-      filter: saturate(.7) contrast(1.08);
+      position:absolute;
+
+      right:0;
+      top:0;
+
+      width:58%;
+      height:100%;
+
+      object-fit:cover;
+
+      object-position:center;
+
+      opacity:.82;
+
+      filter:
+        grayscale(.1)
+        contrast(1.08)
+        saturate(.7);
+
+      transform:scale(1.03);
     }
 
+
+    /* Decorative circle */
+
+    .hero-circle {
+      position:absolute;
+
+      width:680px;
+      height:680px;
+
+      right:-280px;
+      top:50%;
+
+      transform:translateY(-50%);
+
+      border:1px solid rgba(201,164,92,.08);
+
+      border-radius:50%;
+
+      box-shadow:
+        0 0 0 80px rgba(201,164,92,.025),
+        0 0 0 160px rgba(201,164,92,.018);
+
+      animation:rotate 35s linear infinite;
+    }
+
+    @keyframes rotate {
+
+      to {
+        transform:
+          translateY(-50%)
+          rotate(360deg);
+      }
+
+    }
+
+
     .hero-content {
-      position: relative;
-      z-index: 3;
-      padding-top: 70px;
-      width: 60%;
+      position:relative;
+
+      z-index:3;
+
+      width:55%;
+
+      padding-top:65px;
     }
 
     .eyebrow {
-      color: var(--gold);
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: .42em;
-      margin-bottom: 25px;
-      opacity: 0;
-      animation: heroUp .9s .5s forwards;
+      color:var(--gold);
+
+      font-size:9px;
+
+      letter-spacing:.4em;
+
+      margin-bottom:22px;
+
+      opacity:0;
+
+      animation:heroIn .9s .3s forwards;
     }
 
+
+    /* IMPORTANT:
+       Smaller than previous version
+    */
+
     .hero-title {
-      font-family: var(--serif);
-      font-size: clamp(72px, 10vw, 140px);
-      line-height: .78;
-      font-weight: 500;
-      letter-spacing: -.025em;
-      opacity: 0;
-      animation: heroUp 1s .65s forwards;
+      font-family:var(--serif);
+
+      font-weight:500;
+
+      font-size:
+        clamp(55px, 7.5vw, 105px);
+
+      line-height:.82;
+
+      letter-spacing:-.02em;
+
+      max-width:520px;
+
+      opacity:0;
+
+      animation:heroIn 1s .45s forwards;
     }
 
     .hero-title span {
-      display: block;
-      color: var(--gold-light);
-      font-style: italic;
-      margin-left: 75px;
+      display:block;
+
+      color:var(--gold-light);
+
+      font-style:italic;
+
+      margin-left:55px;
     }
+
+
+    .phone-hero {
+      display:inline-flex;
+
+      align-items:center;
+
+      gap:12px;
+
+      margin-top:25px;
+
+      color:var(--gold-light);
+
+      font-family:var(--serif);
+
+      font-size:24px;
+
+      letter-spacing:.03em;
+
+      transition:.3s;
+
+      opacity:0;
+
+      animation:heroIn .8s .65s forwards;
+    }
+
+    .phone-hero::before {
+      content:"";
+
+      width:30px;
+      height:1px;
+
+      background:var(--gold);
+    }
+
+    .phone-hero:hover {
+      color:white;
+
+      transform:translateX(5px);
+    }
+
 
     .hero-subtitle {
-      max-width: 450px;
-      margin-top: 38px;
-      color: #aaa;
-      font-size: 14px;
-      line-height: 2;
-      opacity: 0;
-      animation: heroUp .9s .8s forwards;
+      max-width:440px;
+
+      margin-top:27px;
+
+      color:#9b978f;
+
+      font-size:13px;
+
+      line-height:2;
+
+      opacity:0;
+
+      animation:heroIn .8s .8s forwards;
     }
+
 
     .hero-buttons {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      margin-top: 38px;
-      opacity: 0;
-      animation: heroUp .9s .95s forwards;
+      display:flex;
+
+      gap:15px;
+
+      margin-top:32px;
+
+      opacity:0;
+
+      animation:heroIn .8s .95s forwards;
     }
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 50px;
-      padding: 0 28px;
-      border: 1px solid var(--gold);
-      color: var(--gold-light);
-      font-size: 11px;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      transition: var(--transition);
-      position: relative;
-      overflow: hidden;
+
+    .button {
+      min-height:49px;
+
+      padding:0 27px;
+
+      display:inline-flex;
+
+      align-items:center;
+      justify-content:center;
+
+      border:1px solid var(--gold);
+
+      color:var(--gold-light);
+
+      font-size:10px;
+
+      letter-spacing:.12em;
+
+      text-transform:uppercase;
+
+      position:relative;
+
+      overflow:hidden;
+
+      transition:.4s var(--ease);
     }
 
-    .btn::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: var(--gold);
-      transform: translateY(100%);
-      transition: transform .4s ease;
-      z-index: -1;
+    .button::before {
+      content:"";
+
+      position:absolute;
+
+      inset:0;
+
+      background:var(--gold);
+
+      transform:translateY(100%);
+
+      transition:.4s;
     }
 
-    .btn:hover {
-      color: #000;
+    .button span {
+      position:relative;
+      z-index:2;
     }
 
-    .btn:hover::before {
-      transform: translateY(0);
+    .button:hover {
+      color:#000;
     }
 
-    .btn-filled {
-      background: var(--gold);
-      color: #080808;
+    .button:hover::before {
+      transform:translateY(0);
     }
 
-    .btn-filled::before {
-      background: var(--gold-light);
+    .button.gold {
+      background:var(--gold);
+
+      color:#000;
     }
 
-    .scroll-indicator {
-      position: absolute;
-      bottom: 35px;
-      left: 40px;
-      z-index: 4;
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      color: #777;
-      font-size: 9px;
-      letter-spacing: .25em;
-      text-transform: uppercase;
+
+    @keyframes heroIn {
+
+      from {
+        opacity:0;
+
+        transform:translateY(30px);
+      }
+
+      to {
+        opacity:1;
+
+        transform:translateY(0);
+      }
+
+    }
+
+
+    .scroll {
+      position:absolute;
+
+      z-index:4;
+
+      left:35px;
+      bottom:32px;
+
+      display:flex;
+
+      align-items:center;
+
+      gap:12px;
+
+      color:#666;
+
+      font-size:8px;
+
+      letter-spacing:.25em;
+
+      text-transform:uppercase;
     }
 
     .scroll-line {
-      width: 55px;
-      height: 1px;
-      background: var(--gold);
-      position: relative;
-      overflow: hidden;
+      width:50px;
+      height:1px;
+
+      background:var(--gold);
+
+      overflow:hidden;
     }
 
-    .scroll-line::after {
-      content: "";
-      position: absolute;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: white;
-      animation: scrollLine 2s infinite;
-    }
 
-    @keyframes scrollLine {
-      100% {
-        left: 100%;
-      }
-    }
-
-    @keyframes heroUp {
-      from {
-        opacity: 0;
-        transform: translateY(35px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* =========================================
+    /* =========================================================
        SECTIONS
-    ========================================= */
+    ========================================================= */
 
     section {
-      position: relative;
-      padding: 130px 0;
+      padding:125px 0;
+
+      position:relative;
     }
 
     .section-label {
-      color: var(--gold);
-      text-transform: uppercase;
-      letter-spacing: .35em;
-      font-size: 9px;
-      margin-bottom: 18px;
+      color:var(--gold);
+
+      font-size:9px;
+
+      letter-spacing:.34em;
+
+      margin-bottom:17px;
     }
 
     .section-title {
-      font-family: var(--serif);
-      font-weight: 500;
-      font-size: clamp(48px, 6vw, 82px);
-      line-height: .95;
+      font-family:var(--serif);
+
+      font-size:
+        clamp(48px, 6vw, 80px);
+
+      line-height:.94;
+
+      font-weight:500;
     }
 
     .section-title em {
-      color: var(--gold-light);
-      font-style: italic;
+      color:var(--gold-light);
     }
 
-    .section-description {
-      color: #888;
-      max-width: 550px;
-      margin-top: 25px;
-      font-size: 14px;
+    .section-text {
+      max-width:560px;
+
+      color:#85817a;
+
+      font-size:13px;
+
+      line-height:2;
+
+      margin-top:24px;
     }
 
     .reveal {
-      opacity: 0;
-      transform: translateY(45px);
+      opacity:0;
+
+      transform:translateY(40px);
+
       transition:
         opacity .9s ease,
-        transform .9s cubic-bezier(.2,.8,.2,1);
+        transform .9s var(--ease);
     }
 
     .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
+      opacity:1;
+
+      transform:translateY(0);
     }
 
-    /* =========================================
+
+    /* =========================================================
        ABOUT
-    ========================================= */
+    ========================================================= */
 
     .about {
       background:
-        radial-gradient(circle at 10% 50%, rgba(201,164,92,.06), transparent 25%),
-        #0a0a0a;
+        radial-gradient(
+          circle at 10% 50%,
+          rgba(201,164,92,.055),
+          transparent 25%
+        ),
+        var(--black-2);
     }
 
     .about-grid {
-      display: grid;
-      grid-template-columns: .9fr 1.1fr;
-      gap: 90px;
-      align-items: center;
+      display:grid;
+
+      grid-template-columns:.9fr 1.1fr;
+
+      gap:90px;
+
+      align-items:center;
     }
 
-    .about-image-wrap {
-      position: relative;
+    .about-image-wrapper {
+      position:relative;
     }
 
     .about-image {
-      height: 630px;
-      object-fit: cover;
-      object-position: center 35%;
-      filter: grayscale(.15);
+      height:620px;
+
+      object-fit:cover;
+
+      object-position:center 35%;
     }
 
-    .about-image-frame {
-      position: absolute;
-      inset: 18px -18px -18px 18px;
-      border: 1px solid var(--border);
-      z-index: -1;
+    .image-frame {
+      position:absolute;
+
+      inset:16px -16px -16px 16px;
+
+      border:1px solid var(--border);
+
+      z-index:-1;
     }
 
     .about-number {
-      position: absolute;
-      bottom: 25px;
-      left: -20px;
-      background: var(--gold);
-      color: #080808;
-      padding: 14px 18px;
-      font-family: var(--serif);
-      font-size: 25px;
+      position:absolute;
+
+      left:-18px;
+      bottom:25px;
+
+      background:var(--gold);
+
+      color:#000;
+
+      padding:12px 17px;
+
+      font-family:var(--serif);
+
+      font-size:25px;
     }
 
     .about-copy {
-      color: #96928a;
-      font-size: 14px;
-      line-height: 2;
-      margin-top: 35px;
+      color:#89857d;
+
+      font-size:13px;
+
+      line-height:2;
+
+      margin-top:30px;
     }
 
     .qualities {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-top: 45px;
+      display:grid;
+
+      grid-template-columns:repeat(3,1fr);
+
+      gap:15px;
+
+      margin-top:40px;
     }
 
     .quality {
-      border-top: 1px solid var(--border);
-      padding-top: 18px;
+      border-top:1px solid var(--border);
+
+      padding-top:15px;
     }
 
     .quality strong {
-      display: block;
-      color: var(--gold-light);
-      font-family: var(--serif);
-      font-size: 24px;
-      font-weight: 500;
+      display:block;
+
+      color:var(--gold-light);
+
+      font-family:var(--serif);
+
+      font-size:24px;
     }
 
     .quality span {
-      color: #666;
-      font-size: 10px;
+      color:#666;
+
+      font-size:9px;
+
+      letter-spacing:.06em;
     }
 
-    /* =========================================
+
+    /* =========================================================
        STATS
-    ========================================= */
+    ========================================================= */
 
     .stats {
-      padding: 60px 0;
-      border-top: 1px solid rgba(255,255,255,.06);
-      border-bottom: 1px solid rgba(255,255,255,.06);
+      padding:55px 0;
+
+      border-top:1px solid rgba(255,255,255,.06);
+
+      border-bottom:1px solid rgba(255,255,255,.06);
     }
 
     .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      display:grid;
+
+      grid-template-columns:repeat(4,1fr);
     }
 
     .stat {
-      text-align: center;
-      border-right: 1px solid rgba(201,164,92,.15);
+      text-align:center;
+
+      border-right:1px solid rgba(201,164,92,.13);
     }
 
     .stat:last-child {
-      border-right: 0;
+      border:0;
     }
 
     .stat-number {
-      font-family: var(--serif);
-      color: var(--gold-light);
-      font-size: 48px;
-      line-height: 1;
+      color:var(--gold-light);
+
+      font-family:var(--serif);
+
+      font-size:46px;
+
+      line-height:1;
     }
 
     .stat-label {
-      color: #666;
-      font-size: 9px;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      margin-top: 10px;
+      color:#62605b;
+
+      font-size:8px;
+
+      letter-spacing:.18em;
+
+      margin-top:9px;
     }
 
-    /* =========================================
-       SERVICES
-    ========================================= */
 
-    .services-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 30px;
-      margin-bottom: 70px;
+    /* =========================================================
+       SERVICES
+    ========================================================= */
+
+    .services-heading {
+      display:flex;
+
+      justify-content:space-between;
+
+      align-items:end;
+
+      gap:40px;
+
+      margin-bottom:60px;
     }
 
     .services-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 2px;
+      display:grid;
+
+      grid-template-columns:repeat(2,1fr);
+
+      gap:2px;
     }
 
     .service {
-      position: relative;
-      min-height: 260px;
-      padding: 40px;
-      background: var(--black-card);
-      border: 1px solid rgba(255,255,255,.025);
-      overflow: hidden;
-      transition: var(--transition);
-    }
+      position:relative;
 
-    .service::before {
-      content: "";
-      position: absolute;
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(201,164,92,.12), transparent 70%);
-      right: -70px;
-      bottom: -70px;
-      transition: .5s ease;
+      min-height:250px;
+
+      padding:38px;
+
+      background:var(--black-3);
+
+      border:1px solid rgba(255,255,255,.025);
+
+      overflow:hidden;
+
+      transition:.45s var(--ease);
     }
 
     .service:hover {
-      border-color: var(--border);
-      transform: translateY(-5px);
+      transform:translateY(-5px);
+
+      border-color:var(--border);
     }
 
-    .service:hover::before {
-      transform: scale(1.5);
+    .service::after {
+      content:"";
+
+      position:absolute;
+
+      width:200px;
+      height:200px;
+
+      right:-90px;
+      bottom:-90px;
+
+      border-radius:50%;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(201,164,92,.13),
+          transparent 70%
+        );
+
+      transition:.5s;
+    }
+
+    .service:hover::after {
+      transform:scale(1.4);
     }
 
     .service-number {
-      color: #4b463d;
-      font-family: var(--serif);
-      font-size: 42px;
+      color:#48443e;
+
+      font-family:var(--serif);
+
+      font-size:40px;
     }
 
     .service h3 {
-      font-family: var(--serif);
-      font-size: 34px;
-      font-weight: 500;
-      color: var(--white);
-      margin-top: 15px;
+      font-family:var(--serif);
+
+      font-size:32px;
+
+      font-weight:500;
+
+      margin-top:13px;
     }
 
     .service p {
-      color: #777;
-      font-size: 12px;
-      max-width: 430px;
-      margin-top: 12px;
+      color:#777;
+
+      font-size:11px;
+
+      max-width:440px;
+
+      margin-top:9px;
     }
 
-    .price {
-      position: absolute;
-      right: 35px;
-      top: 40px;
-      color: var(--gold-light);
-      font-family: var(--serif);
-      font-size: 27px;
+    .service-price {
+      position:absolute;
+
+      right:30px;
+      top:35px;
+
+      color:var(--gold-light);
+
+      font-family:var(--serif);
+
+      font-size:26px;
     }
 
-    .price small {
-      font-family: var(--sans);
-      color: #68645d;
-      font-size: 8px;
-      margin-left: 4px;
+
+    /* =========================================================
+       BARBER STYLE
+       No fake portfolio
+    ========================================================= */
+
+    .style-section {
+      background:#080808;
     }
 
-    /* =========================================
-       PORTFOLIO
-    ========================================= */
-
-    .portfolio {
-      background: #080808;
+    .style-header {
+      margin-bottom:55px;
     }
 
-    .portfolio-heading {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      margin-bottom: 60px;
+    .style-note {
+      max-width:600px;
+
+      color:#68645e;
+
+      font-size:11px;
+
+      line-height:1.9;
+
+      margin-top:20px;
     }
 
-    .portfolio-grid {
-      columns: 3;
-      column-gap: 12px;
+    .style-grid {
+      display:grid;
+
+      grid-template-columns:1.25fr .75fr;
+
+      grid-template-rows:260px 260px;
+
+      gap:12px;
     }
 
-    .portfolio-item {
-      position: relative;
-      margin-bottom: 12px;
-      overflow: hidden;
-      break-inside: avoid;
-      background: #111;
+    .style-card {
+      position:relative;
+
+      overflow:hidden;
+
+      background:#111;
     }
 
-    .portfolio-item img {
-      transition: transform .8s cubic-bezier(.2,.8,.2,1), filter .6s;
+    .style-card:first-child {
+      grid-row:1 / 3;
     }
 
-    .portfolio-item:hover img {
-      transform: scale(1.06);
-      filter: brightness(.6);
+    .style-card img {
+      width:100%;
+      height:100%;
+
+      object-fit:cover;
+
+      transition:
+        transform .8s var(--ease),
+        filter .6s;
     }
 
-    .portfolio-overlay {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: end;
-      padding: 25px;
-      background: linear-gradient(transparent, rgba(0,0,0,.8));
-      opacity: 0;
-      transition: .45s ease;
+    .style-card:hover img {
+      transform:scale(1.06);
+
+      filter:brightness(.65);
     }
 
-    .portfolio-item:hover .portfolio-overlay {
-      opacity: 1;
-    }
+    .style-overlay {
+      position:absolute;
 
-    .portfolio-overlay span {
-      color: var(--gold-light);
-      font-family: var(--serif);
-      font-size: 25px;
-    }
+      inset:0;
 
-    /* =========================================
-       PRICE LIST
-    ========================================= */
+      display:flex;
 
-    .price-section {
+      align-items:end;
+
+      padding:28px;
+
       background:
-        linear-gradient(rgba(8,8,8,.94), rgba(8,8,8,.97)),
+        linear-gradient(
+          transparent 40%,
+          rgba(0,0,0,.85)
+        );
+    }
+
+    .style-overlay span {
+      color:var(--gold-light);
+
+      font-family:var(--serif);
+
+      font-size:27px;
+    }
+
+
+    /* =========================================================
+       PRICES
+    ========================================================= */
+
+    .prices {
+      background:
+        linear-gradient(
+          rgba(7,7,7,.94),
+          rgba(7,7,7,.98)
+        ),
         url("https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=1800&q=85");
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
+
+      background-size:cover;
+
+      background-position:center;
+
+      background-attachment:fixed;
     }
 
     .price-layout {
-      display: grid;
-      grid-template-columns: .8fr 1.2fr;
-      gap: 100px;
-      align-items: center;
+      display:grid;
+
+      grid-template-columns:.75fr 1.25fr;
+
+      gap:90px;
+
+      align-items:center;
     }
 
     .price-note {
-      color: #777;
-      font-size: 13px;
-      margin-top: 25px;
-      line-height: 2;
+      color:#777;
+
+      font-size:12px;
+
+      line-height:2;
+
+      margin-top:25px;
     }
 
     .price-list {
-      border-top: 1px solid var(--border);
+      border-top:1px solid var(--border);
     }
 
     .price-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-      padding: 25px 0;
-      border-bottom: 1px solid rgba(255,255,255,.08);
+      display:flex;
+
+      justify-content:space-between;
+
+      gap:25px;
+
+      padding:24px 0;
+
+      border-bottom:1px solid rgba(255,255,255,.07);
     }
 
-    .price-row-name {
-      color: #ddd;
-      font-family: var(--serif);
-      font-size: 25px;
+    .price-name {
+      font-family:var(--serif);
+
+      color:#ddd;
+
+      font-size:24px;
     }
 
-    .price-row-desc {
-      display: block;
-      color: #65615a;
-      font-family: var(--sans);
-      font-size: 10px;
-      margin-top: 3px;
+    .price-desc {
+      display:block;
+
+      color:#666;
+
+      font-size:9px;
+
+      margin-top:2px;
     }
 
-    .price-row-value {
-      color: var(--gold-light);
-      font-family: var(--serif);
-      font-size: 28px;
-      white-space: nowrap;
+    .price-value {
+      color:var(--gold-light);
+
+      font-family:var(--serif);
+
+      font-size:27px;
+
+      white-space:nowrap;
     }
 
-    /* =========================================
-       EXPERIENCE
-    ========================================= */
 
-    .experience-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 15px;
-      margin-top: 65px;
+    /* =========================================================
+       ATMOSPHERE
+    ========================================================= */
+
+    .atmosphere-grid {
+      display:grid;
+
+      grid-template-columns:repeat(3,1fr);
+
+      gap:14px;
+
+      margin-top:60px;
     }
 
-    .experience-card {
-      min-height: 280px;
-      padding: 35px;
-      border: 1px solid rgba(255,255,255,.07);
-      background: linear-gradient(145deg, #101010, #080808);
-      transition: var(--transition);
+    .atmosphere-card {
+      min-height:270px;
+
+      padding:34px;
+
+      background:
+        linear-gradient(
+          145deg,
+          #111,
+          #080808
+        );
+
+      border:1px solid rgba(255,255,255,.07);
+
+      transition:.45s var(--ease);
     }
 
-    .experience-card:hover {
-      border-color: var(--border);
-      transform: translateY(-8px);
+    .atmosphere-card:hover {
+      transform:translateY(-7px);
+
+      border-color:var(--border);
     }
 
-    .experience-icon {
-      color: var(--gold);
-      font-size: 30px;
-      margin-bottom: 35px;
+    .atmosphere-icon {
+      color:var(--gold);
+
+      font-size:28px;
+
+      margin-bottom:35px;
     }
 
-    .experience-card h3 {
-      font-family: var(--serif);
-      font-size: 29px;
-      font-weight: 500;
+    .atmosphere-card h3 {
+      font-family:var(--serif);
+
+      font-size:28px;
+
+      font-weight:500;
     }
 
-    .experience-card p {
-      color: #707070;
-      font-size: 12px;
-      margin-top: 12px;
+    .atmosphere-card p {
+      color:#6e6b65;
+
+      font-size:11px;
+
+      margin-top:10px;
     }
 
-    /* =========================================
+
+    /* =========================================================
        CTA
-    ========================================= */
+    ========================================================= */
 
     .cta {
-      padding: 150px 0;
-      text-align: center;
+      padding:150px 0;
+
+      text-align:center;
+
+      overflow:hidden;
+
       background:
-        radial-gradient(circle at center, rgba(201,164,92,.12), transparent 40%),
+        radial-gradient(
+          circle at center,
+          rgba(201,164,92,.12),
+          transparent 40%
+        ),
         #080808;
-      overflow: hidden;
-    }
-
-    .cta::before,
-    .cta::after {
-      content: "ARMAN";
-      position: absolute;
-      font-family: var(--serif);
-      font-size: 28vw;
-      line-height: 1;
-      color: transparent;
-      -webkit-text-stroke: 1px rgba(201,164,92,.035);
-      white-space: nowrap;
-      pointer-events: none;
-    }
-
-    .cta::before {
-      top: 0;
-      left: -8%;
-    }
-
-    .cta::after {
-      bottom: 0;
-      right: -8%;
-    }
-
-    .cta-content {
-      position: relative;
-      z-index: 2;
     }
 
     .cta-title {
-      font-family: var(--serif);
-      font-size: clamp(55px, 8vw, 105px);
-      line-height: .9;
-      font-weight: 500;
+      font-family:var(--serif);
+
+      font-size:
+        clamp(55px,8vw,105px);
+
+      line-height:.9;
+
+      font-weight:500;
     }
 
     .cta-title em {
-      color: var(--gold-light);
+      color:var(--gold-light);
     }
 
     .cta p {
-      color: #777;
-      max-width: 470px;
-      margin: 25px auto 35px;
-      font-size: 13px;
+      max-width:450px;
+
+      margin:25px auto 32px;
+
+      color:#777;
+
+      font-size:12px;
     }
 
-    /* =========================================
+
+    /* =========================================================
        CONTACT
-    ========================================= */
+    ========================================================= */
 
     .contact {
-      padding: 0;
+      padding:0;
     }
 
     .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      display:grid;
+
+      grid-template-columns:1fr 1fr;
     }
 
     .contact-info {
-      padding: 100px 12% 100px 0;
-    }
-
-    .contact-map {
-      min-height: 500px;
-      background:
-        linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.65)),
-        url("https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=1200&q=80");
-      background-size: cover;
-      background-position: center;
-      display: flex;
-      align-items: end;
-      padding: 35px;
-    }
-
-    .location-card {
-      background: rgba(5,5,5,.88);
-      border: 1px solid var(--border);
-      padding: 25px;
-      width: 100%;
-      backdrop-filter: blur(10px);
-    }
-
-    .location-card small {
-      color: var(--gold);
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      font-size: 8px;
-    }
-
-    .location-card strong {
-      display: block;
-      font-family: var(--serif);
-      font-size: 28px;
-      font-weight: 500;
-      margin-top: 6px;
+      padding:100px 12% 100px 0;
     }
 
     .contact-details {
-      margin-top: 45px;
+      margin-top:40px;
     }
 
-    .contact-detail {
-      padding: 18px 0;
-      border-bottom: 1px solid rgba(255,255,255,.08);
+    .contact-item {
+      padding:18px 0;
+
+      border-bottom:1px solid rgba(255,255,255,.07);
     }
 
-    .contact-detail span {
-      display: block;
-      color: #5e5a54;
-      font-size: 9px;
-      letter-spacing: .2em;
-      text-transform: uppercase;
+    .contact-item small {
+      color:#5e5a54;
+
+      font-size:8px;
+
+      letter-spacing:.2em;
     }
 
-    .contact-detail a,
-    .contact-detail strong {
-      display: block;
-      color: var(--gold-light);
-      font-family: var(--serif);
-      font-size: 25px;
-      font-weight: 500;
-      margin-top: 4px;
+    .contact-item a,
+    .contact-item strong {
+      display:block;
+
+      color:var(--gold-light);
+
+      font-family:var(--serif);
+
+      font-size:25px;
+
+      font-weight:500;
+
+      margin-top:3px;
     }
 
-    /* =========================================
+    .map {
+      min-height:500px;
+
+      display:flex;
+
+      align-items:end;
+
+      padding:35px;
+
+      background:
+        linear-gradient(
+          rgba(0,0,0,.35),
+          rgba(0,0,0,.7)
+        ),
+        url("https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=1200&q=80");
+
+      background-size:cover;
+
+      background-position:center;
+    }
+
+    .location-card {
+      width:100%;
+
+      padding:25px;
+
+      background:rgba(5,5,5,.88);
+
+      border:1px solid var(--border);
+
+      backdrop-filter:blur(10px);
+    }
+
+    .location-card small {
+      color:var(--gold);
+
+      font-size:8px;
+
+      letter-spacing:.2em;
+    }
+
+    .location-card strong {
+      display:block;
+
+      font-family:var(--serif);
+
+      font-size:27px;
+
+      margin-top:5px;
+    }
+
+
+    /* =========================================================
        FOOTER
-    ========================================= */
+    ========================================================= */
 
     footer {
-      border-top: 1px solid rgba(255,255,255,.07);
-      padding: 35px 0;
-      background: #050505;
+      padding:35px 0;
+
+      border-top:1px solid rgba(255,255,255,.06);
+
+      background:#050505;
     }
 
-    .footer-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
+    .footer {
+      display:flex;
+
+      justify-content:space-between;
+
+      align-items:center;
     }
 
     .footer-logo {
-      font-family: var(--serif);
-      color: var(--gold);
-      font-size: 28px;
-      letter-spacing: .12em;
+      color:var(--gold);
+
+      font-family:var(--serif);
+
+      font-size:27px;
+
+      letter-spacing:.12em;
     }
 
     .footer-copy {
-      color: #505050;
-      font-size: 9px;
-      letter-spacing: .12em;
+      color:#505050;
+
+      font-size:8px;
+
+      letter-spacing:.1em;
     }
 
-    .back-top {
-      width: 38px;
-      height: 38px;
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--gold);
-      transition: .3s;
+    .top {
+      width:38px;
+      height:38px;
+
+      display:flex;
+
+      align-items:center;
+      justify-content:center;
+
+      border:1px solid var(--border);
+
+      color:var(--gold);
+
+      transition:.3s;
     }
 
-    .back-top:hover {
-      background: var(--gold);
-      color: #000;
+    .top:hover {
+      background:var(--gold);
+
+      color:#000;
     }
 
-    /* =========================================
+
+    /* =========================================================
        MOBILE
-    ========================================= */
+    ========================================================= */
 
-    @media (max-width: 900px) {
+    @media(max-width:900px) {
 
       .container {
-        width: min(100% - 30px, 650px);
+        width:min(100% - 30px,650px);
       }
 
       .nav {
-        height: 72px;
+        height:72px;
+      }
+
+      .menu-button {
+        display:block;
       }
 
       .nav-links {
-        position: fixed;
-        inset: 0;
-        background: rgba(5,5,5,.98);
-        backdrop-filter: blur(20px);
-        flex-direction: column;
-        justify-content: center;
-        gap: 28px;
-        transform: translateX(100%);
-        transition: transform .5s ease;
+        position:fixed;
+
+        inset:0;
+
+        background:rgba(5,5,5,.98);
+
+        backdrop-filter:blur(20px);
+
+        display:flex;
+
+        flex-direction:column;
+
+        justify-content:center;
+
+        gap:27px;
+
+        transform:translateX(100%);
+
+        transition:.5s;
       }
 
       .nav-links.open {
-        transform: translateX(0);
+        transform:translateX(0);
       }
 
       .nav-links a {
-        font-size: 17px;
-      }
-
-      .language-switch {
-        margin-left: 0;
-      }
-
-      .mobile-menu-btn {
-        display: block;
-        position: relative;
-        z-index: 1002;
-      }
-
-      .mobile-menu-btn.open span:first-child {
-        transform: rotate(45deg) translate(5px, 5px);
-      }
-
-      .mobile-menu-btn.open span:nth-child(2) {
-        opacity: 0;
-      }
-
-      .mobile-menu-btn.open span:last-child {
-        transform: rotate(-45deg) translate(5px, -5px);
+        font-size:17px;
       }
 
       .hero {
-        min-height: 850px;
-        align-items: end;
-        padding-bottom: 100px;
+        min-height:850px;
+
+        align-items:end;
+
+        padding-bottom:100px;
       }
 
       .hero-photo {
-        width: 100%;
-        height: 75%;
-        opacity: .6;
-        mask-image: linear-gradient(to bottom, transparent 0%, black 35%);
+        width:100%;
+
+        height:75%;
+
+        opacity:.58;
+
+        mask-image:
+          linear-gradient(
+            to bottom,
+            transparent,
+            black 40%
+          );
       }
 
       .hero::after {
         background:
           linear-gradient(
             to bottom,
-            rgba(0,0,0,.1),
-            rgba(0,0,0,.9) 72%
+            rgba(0,0,0,.05),
+            rgba(0,0,0,.95) 75%
           );
       }
 
       .hero-content {
-        width: 100%;
-        padding-top: 100px;
+        width:100%;
+
+        padding-top:100px;
       }
 
       .hero-title {
-        font-size: clamp(70px, 22vw, 120px);
+        font-size:70px;
       }
 
       .hero-title span {
-        margin-left: 30px;
+        margin-left:20px;
       }
 
-      .scroll-indicator {
-        left: 20px;
+      .hero-buttons {
+        flex-direction:column;
+
+        align-items:stretch;
       }
 
-      section {
-        padding: 90px 0;
+      .button {
+        width:100%;
       }
 
       .about-grid,
       .price-layout,
       .contact-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns:1fr;
       }
 
       .about-grid {
-        gap: 55px;
+        gap:55px;
       }
 
       .about-image {
-        height: 500px;
-      }
-
-      .about-image-frame {
-        inset: 12px -12px -12px 12px;
-      }
-
-      .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 35px 0;
-      }
-
-      .stat:nth-child(2) {
-        border-right: 0;
-      }
-
-      .services-header,
-      .portfolio-heading {
-        display: block;
-      }
-
-      .services-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .service {
-        min-height: 240px;
-      }
-
-      .portfolio-grid {
-        columns: 2;
-      }
-
-      .price-layout {
-        gap: 50px;
-      }
-
-      .price-section {
-        background-attachment: scroll;
-      }
-
-      .experience-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .contact-info {
-        padding: 80px 0;
-      }
-
-      .contact-map {
-        min-height: 400px;
-      }
-    }
-
-    @media (max-width: 560px) {
-
-      .logo {
-        font-size: 27px;
-      }
-
-      .hero-title {
-        font-size: 70px;
-      }
-
-      .hero-title span {
-        margin-left: 15px;
-      }
-
-      .hero-buttons {
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-      .btn {
-        width: 100%;
+        height:500px;
       }
 
       .qualities {
-        grid-template-columns: 1fr;
-        gap: 25px;
+        grid-template-columns:1fr;
+
+        gap:20px;
       }
 
-      .portfolio-grid {
-        columns: 1;
+      .stats-grid {
+        grid-template-columns:repeat(2,1fr);
+
+        gap:35px 0;
       }
 
-      .price {
-        position: static;
-        margin-top: 18px;
-        display: block;
+      .stat:nth-child(2) {
+        border-right:0;
+      }
+
+      .services-heading {
+        display:block;
+      }
+
+      .services-grid {
+        grid-template-columns:1fr;
+      }
+
+      .service {
+        min-height:230px;
+      }
+
+      .style-grid {
+        grid-template-columns:1fr;
+
+        grid-template-rows:
+          350px
+          240px
+          240px;
+      }
+
+      .style-card:first-child {
+        grid-row:auto;
+      }
+
+      .prices {
+        background-attachment:scroll;
+      }
+
+      .atmosphere-grid {
+        grid-template-columns:1fr;
+      }
+
+      .contact-info {
+        padding:80px 0;
+      }
+
+      .map {
+        min-height:400px;
+      }
+
+      .footer {
+        flex-direction:column;
+
+        gap:18px;
+
+        text-align:center;
+      }
+
+    }
+
+
+    @media(max-width:550px) {
+
+      .logo {
+        font-size:26px;
+      }
+
+      .hero-title {
+        font-size:62px;
+      }
+
+      .phone-hero {
+        font-size:21px;
+      }
+
+      .style-grid {
+        grid-template-rows:
+          300px
+          220px
+          220px;
       }
 
       .price-row {
-        align-items: start;
+        align-items:flex-start;
       }
 
-      .price-row-name {
-        font-size: 22px;
+      .price-name {
+        font-size:21px;
       }
 
-      .footer-inner {
-        flex-direction: column;
-        text-align: center;
+      .price-value {
+        font-size:22px;
       }
+
     }
+
   </style>
 </head>
 
+
 <body>
 
-  <!-- =========================================
+
+  <!-- =========================================================
        LOADER
-  ========================================= -->
+  ========================================================= -->
 
   <div class="loader">
-    <div class="loader-inner">
-      <div class="loader-logo">ARMAN</div>
+
+    <div class="loader-content">
+
+      <div class="loader-logo">
+        ARMAN
+      </div>
+
       <div class="loader-line"></div>
-      <div class="loader-text">Barber & Grooming</div>
+
+      <div class="loader-sub">
+        Barber & Grooming
+      </div>
+
     </div>
+
   </div>
 
-  <!-- Cursor -->
+
+  <!-- CUSTOM CURSOR -->
+
   <div class="cursor"></div>
+
   <div class="cursor-ring"></div>
 
-  <!-- =========================================
-       NAVIGATION
-  ========================================= -->
+
+  <!-- =========================================================
+       HEADER
+  ========================================================= -->
 
   <header id="header">
 
     <div class="container nav">
 
-      <a href="#home" class="logo hover-target">
+
+      <a href="#home" class="logo">
         ARMAN
-        <span>BARBER & GROOMING</span>
+
+        <small>
+          BARBER & GROOMING
+        </small>
       </a>
+
 
       <nav class="nav-links" id="navLinks">
 
-        <a href="#about" data-hy="Իմ մասին" data-en="About">Իմ մասին</a>
+        <a href="#about"
+           data-hy="Իմ մասին"
+           data-en="About">
+          Իմ մասին
+        </a>
 
-        <a href="#services" data-hy="Ծառայություններ" data-en="Services">
+        <a href="#services"
+           data-hy="Ծառայություններ"
+           data-en="Services">
           Ծառայություններ
         </a>
 
-        <a href="#portfolio" data-hy="Աշխատանքներ" data-en="Portfolio">
-          Աշխատանքներ
+        <a href="#style"
+           data-hy="Ոճ"
+           data-en="Style">
+          Ոճ
         </a>
 
-        <a href="#prices" data-hy="Գներ" data-en="Prices">
+        <a href="#prices"
+           data-hy="Գներ"
+           data-en="Prices">
           Գներ
         </a>
 
-        <a href="#contact" data-hy="Կապ" data-en="Contact">
+        <a href="#contact"
+           data-hy="Կապ"
+           data-en="Contact">
           Կապ
         </a>
 
-        <div class="language-switch">
-          <button class="lang-btn active" data-lang="hy">ՀԱՅ</button>
-          <button class="lang-btn" data-lang="en">EN</button>
+
+        <div class="languages">
+
+          <button
+            class="lang active"
+            data-lang="hy">
+            ՀԱՅ
+          </button>
+
+          <button
+            class="lang"
+            data-lang="en">
+            EN
+          </button>
+
         </div>
 
       </nav>
 
-      <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu">
+
+      <button
+        class="menu-button"
+        id="menuButton"
+        aria-label="Menu">
+
         <span></span>
         <span></span>
         <span></span>
+
       </button>
 
     </div>
@@ -1411,168 +1850,236 @@
   </header>
 
 
-  <!-- =========================================
+  <!-- =========================================================
        HERO
-  ========================================= -->
+  ========================================================= -->
 
   <main>
 
+
     <section class="hero" id="home">
 
-      <div class="hero-grid"></div>
+
+      <div class="hero-circle"></div>
+
 
       <img
         class="hero-photo"
         src="https://cdn.shopify.com/s/files/1/0760/6314/6136/files/5188419493024176446.jpg?v=1786804497"
-        alt="Arman"
+        alt="Barber Arman"
       />
+
 
       <div class="container">
 
         <div class="hero-content">
 
+
           <div
             class="eyebrow"
-            data-hy="ՏՂԱՄԱՐԴԿԱՆՑ ՍԱՆՐՎԱԾՔ • ՄՈՐՈՒՔ • ԽՆԱՄՔ"
-            data-en="MEN'S HAIRCUTS • BEARD • GROOMING"
-          >
-            ՏՂԱՄԱՐԴԿԱՆՑ ՍԱՆՐՎԱԾՔ • ՄՈՐՈՒՔ • ԽՆԱՄՔ
+            data-hy="ՏՂԱՄԱՐԴԿԱՆՑ ՄԱԶԵՐ • ՄՈՐՈՒՔ • ԽՆԱՄՔ"
+            data-en="MEN'S HAIR • BEARD • GROOMING">
+
+            ՏՂԱՄԱՐԴԿԱՆՑ ՄԱԶԵՐ • ՄՈՐՈՒՔ • ԽՆԱՄՔ
+
           </div>
 
+
           <h1 class="hero-title">
-            <span data-hy="Արման" data-en="Arman">Արման</span>
-            <span data-hy="Բարբեր" data-en="Barber">Բարբեր</span>
+
+            <span
+              data-hy="Barber"
+              data-en="Barber">
+              Barber
+            </span>
+
+            <span
+              data-hy="Arman"
+              data-en="Arman">
+              Arman
+            </span>
+
           </h1>
+
+
+          <!-- PHONE UNDER NAME -->
+
+          <a
+            href="tel:+37498044343"
+            class="phone-hero">
+
+            098 044 343
+
+          </a>
+
 
           <p
             class="hero-subtitle"
-            data-hy="Ոճը սկսվում է մանրուքներից։ Կոկիկ սանրվածք, ճիշտ ձևավորված մորուք և հանգիստ մթնոլորտ՝ մեկ վայրում։"
-            data-en="Style begins with the details. A precise haircut, a perfectly shaped beard and a calm atmosphere — all in one place."
-          >
-            Ոճը սկսվում է մանրուքներից։ Կոկիկ սանրվածք, ճիշտ ձևավորված մորուք և հանգիստ մթնոլորտ՝ մեկ վայրում։
+            data-hy="Տղամարդկանց սանրվածք և մորուքի խնամք՝ անհատական մոտեցմամբ, հանգիստ մթնոլորտում և մանրուքների նկատմամբ ուշադրությամբ։"
+            data-en="Men's haircuts and beard grooming with a personal approach, a calm atmosphere and attention to every detail.">
+
+            Տղամարդկանց սանրվածք և մորուքի խնամք՝ անհատական մոտեցմամբ, հանգիստ մթնոլորտում և մանրուքների նկատմամբ ուշադրությամբ։
+
           </p>
+
 
           <div class="hero-buttons">
 
             <a
               href="#prices"
-              class="btn btn-filled hover-target"
-              data-hy="Տեսնել ծառայությունները"
-              data-en="View services"
-            >
-              Տեսնել ծառայությունները
+              class="button gold">
+
+              <span
+                data-hy="Ծառայություններ"
+                data-en="Services">
+                Ծառայություններ
+              </span>
+
             </a>
+
 
             <a
               href="tel:+37498044343"
-              class="btn hover-target"
-              data-hy="Գրանցվել"
-              data-en="Book appointment"
-            >
-              Գրանցվել
+              class="button">
+
+              <span
+                data-hy="Գրանցվել"
+                data-en="Book">
+                Գրանցվել
+              </span>
+
             </a>
 
           </div>
 
+
         </div>
 
       </div>
 
-      <div class="scroll-indicator">
+
+      <div class="scroll">
+
         <div class="scroll-line"></div>
-        <span>Scroll</span>
+
+        SCROLL
+
       </div>
+
 
     </section>
 
 
-    <!-- =========================================
+    <!-- =========================================================
          ABOUT
-    ========================================= -->
+    ========================================================= -->
 
     <section class="about" id="about">
 
-      <div class="container">
+      <div class="container about-grid">
 
-        <div class="about-grid">
 
-          <div class="about-image-wrap reveal">
+        <div class="about-image-wrapper reveal">
 
-            <img
-              class="about-image"
-              src="https://cdn.shopify.com/s/files/1/0760/6314/6136/files/5188419493024176446.jpg?v=1786804497"
-              alt="Arman Barber"
-            />
+          <img
+            class="about-image"
+            src="https://cdn.shopify.com/s/files/1/0760/6314/6136/files/5188419493024176446.jpg?v=1786804497"
+            alt="Arman Barber"
+          />
 
-            <div class="about-image-frame"></div>
+          <div class="image-frame"></div>
 
-            <div class="about-number">
-              01
-            </div>
+          <div class="about-number">
+            01
+          </div>
+
+        </div>
+
+
+        <div class="reveal">
+
+
+          <div
+            class="section-label"
+            data-hy="ԻՄ ՄԱՍԻՆ"
+            data-en="ABOUT ME">
+
+            ԻՄ ՄԱՍԻՆ
 
           </div>
 
-          <div class="reveal">
 
-            <div
-              class="section-label"
-              data-hy="ԻՄ ՄԱՍԻՆ"
-              data-en="ABOUT ME"
-            >
-              ԻՄ ՄԱՍԻՆ
-            </div>
+          <h2
+            class="section-title"
+            data-hy="Պարզ ոճ։<br><em>Ճիշտ մանրուքներ։</em>"
+            data-en="Simple style.<br><em>Perfect details.</em>">
 
-            <h2
-              class="section-title"
-              data-hy="Ոճը՝ առանց <em>ավելորդության</em>"
-              data-en="Style without <em>excess</em>"
-            >
-              Ոճը՝ առանց <em>ավելորդության</em>
-            </h2>
+            Պարզ ոճ։<br>
+            <em>Ճիշտ մանրուքներ։</em>
 
-            <p
-              class="about-copy"
-              data-hy="Ես Արմանն եմ։ Իմ աշխատանքում կարևորում եմ ոչ միայն սանրվածքի արդյունքը, այլ նաև այն զգացողությունը, որը մարդը ստանում է սրահից դուրս գալիս։ Հանգիստ մթնոլորտ, հավասարակշռված մոտեցում, մանրուքների նկատմամբ ուշադրություն և յուրաքանչյուր հաճախորդի անհատական ոճը հասկանալու ցանկություն։"
-              data-en="I'm Arman. For me, barbering is not only about the final haircut, but also about how a client feels when leaving the chair. A calm atmosphere, a balanced approach, attention to detail and an individual understanding of every client's style."
-            >
-              Ես Արմանն եմ։ Իմ աշխատանքում կարևորում եմ ոչ միայն սանրվածքի արդյունքը, այլ նաև այն զգացողությունը, որը մարդը ստանում է սրահից դուրս գալիս։ Հանգիստ մթնոլորտ, հավասարակշռված մոտեցում, մանրուքների նկատմամբ ուշադրություն և յուրաքանչյուր հաճախորդի անհատական ոճը հասկանալու ցանկություն։
-            </p>
+          </h2>
 
-            <div class="qualities">
 
-              <div class="quality">
-                <strong>01</strong>
-                <span
-                  data-hy="ՀԱՆԳԻՍՏ ՄՈՏԵՑՈՒՄ"
-                  data-en="CALM APPROACH"
-                >
-                  ՀԱՆԳԻՍՏ ՄՈՏԵՑՈՒՄ
-                </span>
-              </div>
+          <p
+            class="about-copy"
+            data-hy="Ես Արմանն եմ։ Աշխատում եմ միայն տղամարդկանց մազերի և մորուքի ուղղությամբ։ Ինձ համար լավ արդյունքը միայն գեղեցիկ սանրվածքը չէ․ կարևոր է նաև այն հանգիստ ու վստահ զգացողությունը, որով հաճախորդը հեռանում է սրահից։"
+            data-en="I'm Arman. I specialize exclusively in men's hair and beard grooming. For me, a good result is more than a haircut — it is also the calm and confident feeling a client leaves the chair with.">
 
-              <div class="quality">
-                <strong>02</strong>
-                <span
-                  data-hy="ՄԱՆՐՈՒՔՆԵՐԻ ՈՒՇԱԴՐՈՒԹՅՈՒՆ"
-                  data-en="ATTENTION TO DETAIL"
-                >
-                  ՄԱՆՐՈՒՔՆԵՐԻ ՈՒՇԱԴՐՈՒԹՅՈՒՆ
-                </span>
-              </div>
+            Ես Արմանն եմ։ Աշխատում եմ միայն տղամարդկանց մազերի և մորուքի ուղղությամբ։ Ինձ համար լավ արդյունքը միայն գեղեցիկ սանրվածքը չէ․ կարևոր է նաև այն հանգիստ ու վստահ զգացողությունը, որով հաճախորդը հեռանում է սրահից։
 
-              <div class="quality">
-                <strong>03</strong>
-                <span
-                  data-hy="ԼԱՎ ԵՐԱԺՇՏՈՒԹՅՈՒՆ"
-                  data-en="GOOD MUSIC"
-                >
-                  ԼԱՎ ԵՐԱԺՇՏՈՒԹՅՈՒՆ
-                </span>
-              </div>
+          </p>
+
+
+          <div class="qualities">
+
+
+            <div class="quality">
+
+              <strong>01</strong>
+
+              <span
+                data-hy="ՀԱՆԳԻՍՏ ՄՈՏԵՑՈՒՄ"
+                data-en="CALM APPROACH">
+
+                ՀԱՆԳԻՍՏ ՄՈՏԵՑՈՒՄ
+
+              </span>
 
             </div>
+
+
+            <div class="quality">
+
+              <strong>02</strong>
+
+              <span
+                data-hy="ՄԱՆՐՈՒՔՆԵՐ"
+                data-en="ATTENTION TO DETAIL">
+
+                ՄԱՆՐՈՒՔՆԵՐ
+
+              </span>
+
+            </div>
+
+
+            <div class="quality">
+
+              <strong>03</strong>
+
+              <span
+                data-hy="ԼԱՎ ԵՐԱԺՇՏՈՒԹՅՈՒՆ"
+                data-en="GOOD MUSIC">
+
+                ԼԱՎ ԵՐԱԺՇՏՈՒԹՅՈՒՆ
+
+              </span>
+
+            </div>
+
 
           </div>
+
 
         </div>
 
@@ -1581,99 +2088,134 @@
     </section>
 
 
-    <!-- =========================================
+    <!-- =========================================================
          STATS
-    ========================================= -->
+    ========================================================= -->
 
     <section class="stats">
 
       <div class="container stats-grid">
 
-        <div class="stat reveal">
-          <div class="stat-number">02</div>
-          <div
-            class="stat-label"
-            data-hy="ՍՐԱՀԻ ԱՇԽԱՏԱԿԻՑ"
-            data-en="BARBERS"
-          >
-            ՍՐԱՀԻ ԱՇԽԱՏԱԿԻՑ
-          </div>
-        </div>
 
         <div class="stat reveal">
-          <div class="stat-number">100%</div>
+
+          <div class="stat-number">
+            02
+          </div>
+
+          <div
+            class="stat-label"
+            data-hy="ՍՐԱՀԻ ՄԱՍՆԱԳԵՏ"
+            data-en="PROFESSIONALS">
+
+            ՍՐԱՀԻ ՄԱՍՆԱԳԵՏ
+
+          </div>
+
+        </div>
+
+
+        <div class="stat reveal">
+
+          <div class="stat-number">
+            100%
+          </div>
+
           <div
             class="stat-label"
             data-hy="ԱՆՀԱՏԱԿԱՆ ՄՈՏԵՑՈՒՄ"
-            data-en="PERSONAL APPROACH"
-          >
+            data-en="PERSONAL APPROACH">
+
             ԱՆՀԱՏԱԿԱՆ ՄՈՏԵՑՈՒՄ
+
           </div>
+
         </div>
 
+
         <div class="stat reveal">
-          <div class="stat-number">∞</div>
+
+          <div class="stat-number">
+            MEN
+          </div>
+
+          <div
+            class="stat-label"
+            data-hy="ՏՂԱՄԱՐԴԿԱՆՑ ՍԱՆՐՎԱԾՔ"
+            data-en="MEN'S HAIR">
+
+            ՏՂԱՄԱՐԴԿԱՆՑ ՍԱՆՐՎԱԾՔ
+
+          </div>
+
+        </div>
+
+
+        <div class="stat reveal">
+
+          <div class="stat-number">
+            ∞
+          </div>
+
           <div
             class="stat-label"
             data-hy="ՈՃԻ ՏԱՐԲԵՐԱԿՆԵՐ"
-            data-en="STYLE OPTIONS"
-          >
+            data-en="STYLE OPTIONS">
+
             ՈՃԻ ՏԱՐԲԵՐԱԿՆԵՐ
+
           </div>
+
         </div>
 
-        <div class="stat reveal">
-          <div class="stat-number">01</div>
-          <div
-            class="stat-label"
-            data-hy="ՏԵՂԱԴՐՈՒԹՅՈՒՆ"
-            data-en="LOCATION"
-          >
-            ՏԵՂԱԴՐՈՒԹՅՈՒՆ
-          </div>
-        </div>
 
       </div>
 
     </section>
 
 
-    <!-- =========================================
+    <!-- =========================================================
          SERVICES
-    ========================================= -->
+    ========================================================= -->
 
     <section id="services">
 
       <div class="container">
 
-        <div class="services-header reveal">
+
+        <div class="services-heading reveal">
 
           <div>
 
             <div
               class="section-label"
               data-hy="ԾԱՌԱՅՈՒԹՅՈՒՆՆԵՐ"
-              data-en="SERVICES"
-            >
+              data-en="SERVICES">
+
               ԾԱՌԱՅՈՒԹՅՈՒՆՆԵՐ
+
             </div>
+
 
             <h2
               class="section-title"
               data-hy="Մաքուր <em>աշխատանք</em>"
-              data-en="Precise <em>work</em>"
-            >
+              data-en="Precise <em>work</em>">
+
               Մաքուր <em>աշխատանք</em>
+
             </h2>
 
           </div>
 
+
           <p
-            class="section-description"
-            data-hy="Յուրաքանչյուր ծառայություն կատարվում է մանրուքների նկատմամբ ուշադրությամբ՝ համապատասխան քո դեմքի ձևին, մազերի կառուցվածքին և ցանկալի ոճին։"
-            data-en="Every service is performed with attention to detail, considering your face shape, hair texture and personal style."
-          >
-            Յուրաքանչյուր ծառայություն կատարվում է մանրուքների նկատմամբ ուշադրությամբ՝ համապատասխան քո դեմքի ձևին, մազերի կառուցվածքին և ցանկալի ոճին։
+            class="section-text"
+            data-hy="Միայն տղամարդկանց մազերի և մորուքի ծառայություններ՝ ըստ քո ցանկալի ոճի և արտաքինի։"
+            data-en="Men's hair and beard services tailored to your personal style and appearance.">
+
+            Միայն տղամարդկանց մազերի և մորուքի ծառայություններ՝ ըստ քո ցանկալի ոճի և արտաքինի։
+
           </p>
 
         </div>
@@ -1681,125 +2223,158 @@
 
         <div class="services-grid">
 
-          <article class="service reveal">
-
-            <div class="service-number">01</div>
-
-            <h3
-              data-hy="Մազերի սանրվածք"
-              data-en="Haircut"
-            >
-              Մազերի սանրվածք
-            </h3>
-
-            <p
-              data-hy="Մաքուր ձևավորում, ծավալի և ձևի ճիշտ կառավարում ու վերջնական styling՝ քո դեմքին ու ոճին համապատասխան։"
-              data-en="A clean, tailored haircut with precise shape, volume control and final styling according to your look."
-            >
-              Մաքուր ձևավորում, ծավալի և ձևի ճիշտ կառավարում ու վերջնական styling՝ քո դեմքին ու ոճին համապատասխան։
-            </p>
-
-            <div class="price">2,000 <small>֏</small></div>
-
-          </article>
-
 
           <article class="service reveal">
 
-            <div class="service-number">02</div>
+            <div class="service-number">
+              01
+            </div>
 
             <h3
-              data-hy="Մազ + ծոծրակ"
-              data-en="Hair + Neck"
-            >
-              Մազ + ծոծրակ
+              data-hy="Միայն մազ"
+              data-en="Haircut">
+
+              Միայն մազ
+
             </h3>
 
             <p
-              data-hy="Սանրվածք և կոկիկ ծոծրակի մաքրում՝ ավելի հավաք ու ավարտուն տեսքի համար։"
-              data-en="A haircut combined with a clean neck finish for a sharper, more polished look."
-            >
-              Սանրվածք և կոկիկ ծոծրակի մաքրում՝ ավելի հավաք ու ավարտուն տեսքի համար։
+              data-hy="Տղամարդկանց սանրվածք՝ ձևի, ծավալի և վերջնական styling-ի ճիշտ համադրությամբ։"
+              data-en="Men's haircut with precise shape, volume control and final styling.">
+
+              Տղամարդկանց սանրվածք՝ ձևի, ծավալի և վերջնական styling-ի ճիշտ համադրությամբ։
+
             </p>
 
-            <div class="price">2,000 <small>֏</small></div>
-
-          </article>
-
-
-          <article class="service reveal">
-
-            <div class="service-number">03</div>
-
-            <h3
-              data-hy="Մազ + մորուք"
-              data-en="Hair + Beard"
-            >
-              Մազ + մորուք
-            </h3>
-
-            <p
-              data-hy="Մազերի և մորուքի համադրված ձևավորում՝ ամբողջական, հավասարակշռված տղամարդկային կերպարի համար։"
-              data-en="A coordinated haircut and beard shaping service for a complete, balanced masculine look."
-            >
-              Մազերի և մորուքի համադրված ձևավորում՝ ամբողջական, հավասարակշռված տղամարդկային կերպարի համար։
-            </p>
-
-            <div class="price">4,000 <small>֏</small></div>
-
-          </article>
-
-
-          <article class="service reveal">
-
-            <div class="service-number">04</div>
-
-            <h3
-              data-hy="Ծոծրակ"
-              data-en="Neck Cleanup"
-            >
-              Ծոծրակ
-            </h3>
-
-            <p
-              data-hy="Արագ և կոկիկ ծոծրակի մաքրում՝ սանրվածքի թարմ ու խնամված տեսքը պահպանելու համար։"
-              data-en="A quick and precise neck cleanup to keep your haircut looking fresh and sharp."
-            >
-              Արագ և կոկիկ ծոծրակի մաքրում՝ սանրվածքի թարմ ու խնամված տեսքը պահպանելու համար։
-            </p>
-
-            <div class="price">1,000 <small>֏</small></div>
-
-          </article>
-
-
-          <article class="service reveal" style="grid-column: 1 / -1;">
-
-            <div class="service-number">05</div>
-
-            <h3
-              data-hy="Մորուքի խնամք"
-              data-en="Beard Grooming"
-            >
-              Մորուքի խնամք
-            </h3>
-
-            <p
-              data-hy="Մորուքի ձևավորում և խնամք՝ անհատական մոտեցմամբ։ Արժեքը որոշվում է հաճախորդի մորուքի երկարությունից, խտությունից և ընդհանուր վիճակից։"
-              data-en="Personalized beard grooming and shaping. The final price depends on the length, density and overall condition of the beard."
-            >
-              Մորուքի ձևավորում և խնամք՝ անհատական մոտեցմամբ։ Արժեքը որոշվում է հաճախորդի մորուքի երկարությունից, խտությունից և ընդհանուր վիճակից։
-            </p>
-
-            <div
-              class="price"
-              data-hy="ԱՆՀԱՏԱԿԱՆ"
-              data-en="CUSTOM"
-            >
-              ԱՆՀԱՏԱԿԱՆ
+            <div class="service-price">
+              2,000 ֏
             </div>
 
           </article>
+
+
+          <article class="service reveal">
+
+            <div class="service-number">
+              02
+            </div>
+
+            <h3
+              data-hy="Մազ + ծոծրակ"
+              data-en="Hair + Neck">
+
+              Մազ + ծոծրակ
+
+            </h3>
+
+            <p
+              data-hy="Սանրվածք և կոկիկ ծոծրակի մաքրում՝ հավաք ու ավարտուն տեսքի համար։"
+              data-en="Haircut and precise neck cleanup for a clean finished look.">
+
+              Սանրվածք և կոկիկ ծոծրակի մաքրում՝ հավաք ու ավարտուն տեսքի համար։
+
+            </p>
+
+            <div class="service-price">
+              2,000 ֏
+            </div>
+
+          </article>
+
+
+          <article class="service reveal">
+
+            <div class="service-number">
+              03
+            </div>
+
+            <h3
+              data-hy="Մազ + մորուք"
+              data-en="Hair + Beard">
+
+              Մազ + մորուք
+
+            </h3>
+
+            <p
+              data-hy="Մազերի և մորուքի համադրված ձևավորում՝ ամբողջական տղամարդկային կերպարի համար։"
+              data-en="Coordinated hair and beard shaping for a complete masculine look.">
+
+              Մազերի և մորուքի համադրված ձևավորում՝ ամբողջական տղամարդկային կերպարի համար։
+
+            </p>
+
+            <div class="service-price">
+              4,000 ֏
+            </div>
+
+          </article>
+
+
+          <article class="service reveal">
+
+            <div class="service-number">
+              04
+            </div>
+
+            <h3
+              data-hy="Միայն ծոծրակ"
+              data-en="Neck Cleanup">
+
+              Միայն ծոծրակ
+
+            </h3>
+
+            <p
+              data-hy="Արագ և կոկիկ ծոծրակի մաքրում՝ սանրվածքի թարմ տեսքը պահպանելու համար։"
+              data-en="A clean neck finish to keep your haircut looking fresh.">
+
+              Արագ և կոկիկ ծոծրակի մաքրում՝ սանրվածքի թարմ տեսքը պահպանելու համար։
+
+            </p>
+
+            <div class="service-price">
+              1,000 ֏
+            </div>
+
+          </article>
+
+
+          <article
+            class="service reveal"
+            style="grid-column:1/-1">
+
+            <div class="service-number">
+              05
+            </div>
+
+            <h3
+              data-hy="Մորուքի խնամք"
+              data-en="Beard Grooming">
+
+              Մորուքի խնամք
+
+            </h3>
+
+            <p
+              data-hy="Մորուքի ձևավորում և խնամք՝ անհատական մոտեցմամբ։ Արժեքը կախված է մորուքի երկարությունից, խտությունից և վիճակից։"
+              data-en="Personalized beard grooming. The price depends on beard length, density and condition.">
+
+              Մորուքի ձևավորում և խնամք՝ անհատական մոտեցմամբ։ Արժեքը կախված է մորուքի երկարությունից, խտությունից և վիճակից։
+
+            </p>
+
+            <div
+              class="service-price"
+              data-hy="ԱՆՀԱՏԱԿԱՆ"
+              data-en="CUSTOM">
+
+              ԱՆՀԱՏԱԿԱՆ
+
+            </div>
+
+          </article>
+
 
         </div>
 
@@ -1808,75 +2383,83 @@
     </section>
 
 
-    <!-- =========================================
-         PORTFOLIO
-    ========================================= -->
+    <!-- =========================================================
+         BARBER STYLE
+    ========================================================= -->
 
-    <section class="portfolio" id="portfolio">
+    <section class="style-section" id="style">
 
       <div class="container">
 
-        <div class="portfolio-heading reveal">
 
-          <div>
+        <div class="style-header reveal">
 
-            <div
-              class="section-label"
-              data-hy="ՊՈՐՏՖՈԼԻՈ"
-              data-en="PORTFOLIO"
-            >
-              ՊՈՐՏՖՈԼԻՈ
-            </div>
+          <div
+            class="section-label"
+            data-hy="BARBER STYLE"
+            data-en="BARBER STYLE">
 
-            <h2
-              class="section-title"
-              data-hy="Աշխատանքը խոսում է <em>ինքն իր համար</em>"
-              data-en="The work speaks <em>for itself</em>"
-            >
-              Աշխատանքը խոսում է <em>ինքն իր համար</em>
-            </h2>
+            BARBER STYLE
 
           </div>
+
+
+          <h2
+            class="section-title"
+            data-hy="Տղամարդկանց <em>ոճ և խնամք</em>"
+            data-en="Men's <em>style & grooming</em>">
+
+            Տղամարդկանց <em>ոճ և խնամք</em>
+
+          </h2>
+
+
+          <p
+            class="style-note"
+            data-hy="Այս բաժինը ներկայացնում է barbering-ի ընդհանուր էսթետիկան և աշխատանքային մթնոլորտը։ Արմանի իրական աշխատանքների լուսանկարները կարող ենք ավելացնել հետագայում՝ հենց դրանք պատրաստ լինելուց հետո։"
+            data-en="This section represents the visual atmosphere of modern barbering. Arman's real work can be added later when his own portfolio photos are ready.">
+
+            Այս բաժինը ներկայացնում է barbering-ի ընդհանուր էսթետիկան և աշխատանքային մթնոլորտը։ Արմանի իրական աշխատանքների լուսանկարները կարող ենք ավելացնել հետագայում՝ հենց դրանք պատրաստ լինելուց հետո։
+
+          </p>
 
         </div>
 
 
-        <div class="portfolio-grid">
+        <div class="style-grid">
 
-          <!-- Placeholder 1 -->
-          <div class="portfolio-item reveal">
+
+          <div class="style-card reveal">
 
             <img
-              src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=900&q=85"
-              alt="Men's haircut"
+              src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=1200&q=85"
+              alt="Men's barber style"
               loading="lazy"
             />
 
-            <div class="portfolio-overlay">
-              <span>Classic Fade</span>
+            <div class="style-overlay">
+              <span>Modern Men's Style</span>
             </div>
 
           </div>
 
 
-          <!-- Placeholder 2 -->
-          <div class="portfolio-item reveal">
+          <div class="style-card reveal">
 
             <img
               src="https://images.unsplash.com/photo-1599351431202-1e0f0d7f6f8d?auto=format&fit=crop&w=900&q=85"
-              alt="Barber work"
+              alt="Men's grooming"
               loading="lazy"
             />
 
-            <div class="portfolio-overlay">
-              <span>Modern Cut</span>
+            <div class="style-overlay">
+              <span>Precision</span>
             </div>
 
           </div>
 
 
-          <!-- Placeholder 3 -->
-          <div class="portfolio-item reveal">
+          <div class="style-card reveal">
 
             <img
               src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=900&q=85"
@@ -1884,59 +2467,12 @@
               loading="lazy"
             />
 
-            <div class="portfolio-overlay">
+            <div class="style-overlay">
               <span>Grooming</span>
             </div>
 
           </div>
 
-
-          <!-- Placeholder 4 -->
-          <div class="portfolio-item reveal">
-
-            <img
-              src="https://images.unsplash.com/photo-1622288432450-277d0e6f7e4a?auto=format&fit=crop&w=900&q=85"
-              alt="Men's style"
-              loading="lazy"
-            />
-
-            <div class="portfolio-overlay">
-              <span>Beard Style</span>
-            </div>
-
-          </div>
-
-
-          <!-- Placeholder 5 -->
-          <div class="portfolio-item reveal">
-
-            <img
-              src="https://images.unsplash.com/photo-1593702295094-aea290f0a3d0?auto=format&fit=crop&w=900&q=85"
-              alt="Barber haircut"
-              loading="lazy"
-            />
-
-            <div class="portfolio-overlay">
-              <span>Clean Finish</span>
-            </div>
-
-          </div>
-
-
-          <!-- Placeholder 6 -->
-          <div class="portfolio-item reveal">
-
-            <img
-              src="https://images.unsplash.com/photo-1582095133179-bfd08e2fc6b3?auto=format&fit=crop&w=900&q=85"
-              alt="Barber shop"
-              loading="lazy"
-            />
-
-            <div class="portfolio-overlay">
-              <span>Grooming Details</span>
-            </div>
-
-          </div>
 
         </div>
 
@@ -1945,38 +2481,44 @@
     </section>
 
 
-    <!-- =========================================
+    <!-- =========================================================
          PRICES
-    ========================================= -->
+    ========================================================= -->
 
-    <section class="price-section" id="prices">
+    <section class="prices" id="prices">
 
       <div class="container price-layout">
+
 
         <div class="reveal">
 
           <div
             class="section-label"
             data-hy="ԳՆԱՑՈՒՑԱԿ"
-            data-en="PRICE LIST"
-          >
+            data-en="PRICE LIST">
+
             ԳՆԱՑՈՒՑԱԿ
+
           </div>
+
 
           <h2
             class="section-title"
             data-hy="Պարզ <em>և թափանցիկ</em>"
-            data-en="Simple <em>& transparent</em>"
-          >
+            data-en="Simple <em>& transparent</em>">
+
             Պարզ <em>և թափանցիկ</em>
+
           </h2>
+
 
           <p
             class="price-note"
-            data-hy="Մորուքի խնամքի վերջնական արժեքը որոշվում է տեղում՝ հաշվի առնելով մորուքի երկարությունը, խտությունը և վիճակը։"
-            data-en="The final beard grooming price is determined individually based on the beard's length, density and condition."
-          >
-            Մորուքի խնամքի վերջնական արժեքը որոշվում է տեղում՝ հաշվի առնելով մորուքի երկարությունը, խտությունը և վիճակը։
+            data-hy="Մորուքի խնամքի արժեքը որոշվում է անհատական՝ հաշվի առնելով մորուքի երկարությունը, խտությունը և ընդհանուր վիճակը։"
+            data-en="Beard grooming is individually priced according to beard length, density and condition.">
+
+            Մորուքի խնամքի արժեքը որոշվում է անհատական՝ հաշվի առնելով մորուքի երկարությունը, խտությունը և ընդհանուր վիճակը։
+
           </p>
 
         </div>
@@ -1984,27 +2526,32 @@
 
         <div class="price-list reveal">
 
+
           <div class="price-row">
 
             <div>
+
               <div
-                class="price-row-name"
+                class="price-name"
                 data-hy="Միայն մազ"
-                data-en="Haircut"
-              >
+                data-en="Haircut">
+
                 Միայն մազ
+
               </div>
 
               <span
-                class="price-row-desc"
+                class="price-desc"
                 data-hy="Տղամարդկանց սանրվածք"
-                data-en="Men's haircut"
-              >
+                data-en="Men's haircut">
+
                 Տղամարդկանց սանրվածք
+
               </span>
+
             </div>
 
-            <div class="price-row-value">
+            <div class="price-value">
               2,000 ֏
             </div>
 
@@ -2014,24 +2561,28 @@
           <div class="price-row">
 
             <div>
+
               <div
-                class="price-row-name"
+                class="price-name"
                 data-hy="Մազ + ծոծրակ"
-                data-en="Hair + Neck"
-              >
+                data-en="Hair + Neck">
+
                 Մազ + ծոծրակ
+
               </div>
 
               <span
-                class="price-row-desc"
+                class="price-desc"
                 data-hy="Սանրվածք + ծոծրակի մաքրում"
-                data-en="Haircut + neck cleanup"
-              >
+                data-en="Haircut + neck cleanup">
+
                 Սանրվածք + ծոծրակի մաքրում
+
               </span>
+
             </div>
 
-            <div class="price-row-value">
+            <div class="price-value">
               2,000 ֏
             </div>
 
@@ -2041,24 +2592,28 @@
           <div class="price-row">
 
             <div>
+
               <div
-                class="price-row-name"
+                class="price-name"
                 data-hy="Միայն ծոծրակ"
-                data-en="Neck Cleanup"
-              >
+                data-en="Neck Cleanup">
+
                 Միայն ծոծրակ
+
               </div>
 
               <span
-                class="price-row-desc"
-                data-hy="Թարմ և կոկիկ ավարտ"
-                data-en="Clean and sharp finish"
-              >
-                Թարմ և կոկիկ ավարտ
+                class="price-desc"
+                data-hy="Կոկիկ ավարտ"
+                data-en="Clean finish">
+
+                Կոկիկ ավարտ
+
               </span>
+
             </div>
 
-            <div class="price-row-value">
+            <div class="price-value">
               1,000 ֏
             </div>
 
@@ -2068,24 +2623,28 @@
           <div class="price-row">
 
             <div>
+
               <div
-                class="price-row-name"
+                class="price-name"
                 data-hy="Մազ + մորուք"
-                data-en="Hair + Beard"
-              >
+                data-en="Hair + Beard">
+
                 Մազ + մորուք
+
               </div>
 
               <span
-                class="price-row-desc"
-                data-hy="Ամբողջական կերպարի ձևավորում"
-                data-en="Complete grooming"
-              >
-                Ամբողջական կերպարի ձևավորում
+                class="price-desc"
+                data-hy="Ամբողջական կերպար"
+                data-en="Complete grooming">
+
+                Ամբողջական կերպար
+
               </span>
+
             </div>
 
-            <div class="price-row-value">
+            <div class="price-value">
               4,000 ֏
             </div>
 
@@ -2095,32 +2654,38 @@
           <div class="price-row">
 
             <div>
+
               <div
-                class="price-row-name"
+                class="price-name"
                 data-hy="Մորուքի խնամք"
-                data-en="Beard Grooming"
-              >
+                data-en="Beard Grooming">
+
                 Մորուքի խնամք
+
               </div>
 
               <span
-                class="price-row-desc"
-                data-hy="Արժեքը՝ անհատական"
-                data-en="Individual pricing"
-              >
-                Արժեքը՝ անհատական
+                class="price-desc"
+                data-hy="Անհատական արժեք"
+                data-en="Individual pricing">
+
+                Անհատական արժեք
+
               </span>
+
             </div>
 
             <div
-              class="price-row-value"
+              class="price-value"
               data-hy="Անհատական"
-              data-en="Custom"
-            >
+              data-en="Custom">
+
               Անհատական
+
             </div>
 
           </div>
+
 
         </div>
 
@@ -2129,106 +2694,126 @@
     </section>
 
 
-    <!-- =========================================
-         EXPERIENCE
-    ========================================= -->
+    <!-- =========================================================
+         ATMOSPHERE
+    ========================================================= -->
 
     <section>
 
       <div class="container">
+
 
         <div class="reveal">
 
           <div
             class="section-label"
             data-hy="ՄԹՆՈԼՈՐՏ"
-            data-en="THE EXPERIENCE"
-          >
+            data-en="THE EXPERIENCE">
+
             ՄԹՆՈԼՈՐՏ
+
           </div>
+
 
           <h2
             class="section-title"
             data-hy="Սանրվածքից <em>ավելին</em>"
-            data-en="More than a <em>haircut</em>"
-          >
+            data-en="More than a <em>haircut</em>">
+
             Սանրվածքից <em>ավելին</em>
+
           </h2>
 
+
           <p
-            class="section-description"
-            data-hy="Նոր վերանորոգված, ժամանակակից պայմաններ և հանգիստ մթնոլորտ։ Սրահում աշխատում են երկու մասնագետ։"
-            data-en="A newly renovated, modern space with a calm atmosphere. Two professionals work at the salon."
-          >
-            Նոր վերանորոգված, ժամանակակից պայմաններ և հանգիստ մթնոլորտ։ Սրահում աշխատում են երկու մասնագետ։
+            class="section-text"
+            data-hy="Նոր վերանորոգված, հարմարավետ սրահ, հանգիստ միջավայր և լավ երաժշտական ճաշակ։ Այստեղ նպատակը միայն սանրվածքը չէ, այլ ամբողջ փորձառությունը։"
+            data-en="A newly renovated, comfortable salon with a calm atmosphere and carefully selected music. The goal is not only the haircut, but the whole experience.">
+
+            Նոր վերանորոգված, հարմարավետ սրահ, հանգիստ միջավայր և լավ երաժշտական ճաշակ։ Այստեղ նպատակը միայն սանրվածքը չէ, այլ ամբողջ փորձառությունը։
+
           </p>
 
         </div>
 
 
-        <div class="experience-grid">
+        <div class="atmosphere-grid">
 
-          <div class="experience-card reveal">
 
-            <div class="experience-icon">✦</div>
+          <div class="atmosphere-card reveal">
+
+            <div class="atmosphere-icon">
+              ✦
+            </div>
 
             <h3
-              data-hy="Նոր վերանորոգված սրահ"
-              data-en="Newly Renovated Space"
-            >
-              Նոր վերանորոգված սրահ
+              data-hy="Նոր սրահ"
+              data-en="New Space">
+
+              Նոր սրահ
+
             </h3>
 
             <p
-              data-hy="Մաքուր, ժամանակակից և հարմարավետ միջավայր՝ հանգիստ սպասարկման համար։"
-              data-en="A clean, modern and comfortable environment designed for a relaxed experience."
-            >
-              Մաքուր, ժամանակակից և հարմարավետ միջավայր՝ հանգիստ սպասարկման համար։
+              data-hy="Նոր վերանորոգված պայմաններ՝ մաքուր, ժամանակակից և հարմարավետ միջավայրով։"
+              data-en="A newly renovated, clean, modern and comfortable environment.">
+
+              Նոր վերանորոգված պայմաններ՝ մաքուր, ժամանակակից և հարմարավետ միջավայրով։
+
             </p>
 
           </div>
 
 
-          <div class="experience-card reveal">
+          <div class="atmosphere-card reveal">
 
-            <div class="experience-icon">◌</div>
+            <div class="atmosphere-icon">
+              ◌
+            </div>
 
             <h3
               data-hy="Հանգիստ մթնոլորտ"
-              data-en="Calm Atmosphere"
-            >
+              data-en="Calm Atmosphere">
+
               Հանգիստ մթնոլորտ
+
             </h3>
 
             <p
-              data-hy="Հավասարակշռված սպասարկում և լավ երաժշտական միջավայր՝ առանց ավելորդ աղմուկի։"
-              data-en="A balanced service experience with carefully selected music and a relaxed atmosphere."
-            >
-              Հավասարակշռված սպասարկում և լավ երաժշտական միջավայր՝ առանց ավելորդ աղմուկի։
+              data-hy="Հավասարակշռված սպասարկում՝ առանց ավելորդ շտապելու և աղմուկի։"
+              data-en="A balanced experience without unnecessary rush or noise.">
+
+              Հավասարակշռված սպասարկում՝ առանց ավելորդ շտապելու և աղմուկի։
+
             </p>
 
           </div>
 
 
-          <div class="experience-card reveal">
+          <div class="atmosphere-card reveal">
 
-            <div class="experience-icon">⌁</div>
+            <div class="atmosphere-icon">
+              ♪
+            </div>
 
             <h3
-              data-hy="Անհատական մոտեցում"
-              data-en="Personal Approach"
-            >
-              Անհատական մոտեցում
+              data-hy="Լավ երաժշտություն"
+              data-en="Good Music">
+
+              Լավ երաժշտություն
+
             </h3>
 
             <p
-              data-hy="Ոչ թե պարզապես նույն սանրվածքը բոլորի համար, այլ այն ձևը, որը համապատասխանում է հենց քեզ։"
-              data-en="Not one haircut for everyone — a look designed specifically around you."
-            >
-              Ոչ թե պարզապես նույն սանրվածքը բոլորի համար, այլ այն ձևը, որը համապատասխանում է հենց քեզ։
+              data-hy="Երաժշտական ճաշակը սրահի ընդհանուր մթնոլորտի մի մասն է։"
+              data-en="Music is part of the overall atmosphere and experience.">
+
+              Երաժշտական ճաշակը սրահի ընդհանուր մթնոլորտի մի մասն է։
+
             </p>
 
           </div>
+
 
         </div>
 
@@ -2237,291 +2822,346 @@
     </section>
 
 
-    <!-- =========================================
+    <!-- =========================================================
          CTA
-    ========================================= -->
+    ========================================================= -->
 
     <section class="cta">
 
-      <div class="container cta-content reveal">
+      <div class="container reveal">
+
 
         <div
           class="section-label"
           data-hy="ՊԱՏՐԱՍՏ ԵՍ ՆՈՐ ՈՃԻՆ"
-          data-en="READY FOR A NEW LOOK"
-        >
+          data-en="READY FOR A NEW LOOK">
+
           ՊԱՏՐԱՍՏ ԵՍ ՆՈՐ ՈՃԻՆ
+
         </div>
+
 
         <h2
           class="cta-title"
-          data-hy="Քո ոճը.<br><em>Քո կանոնները.</em>"
-          data-en="Your style.<br><em>Your rules.</em>"
-        >
-          Քո ոճը.<br><em>Քո կանոնները.</em>
+          data-hy="Քո ոճը։<br><em>Քո կանոնները։</em>"
+          data-en="Your style.<br><em>Your rules.</em>">
+
+          Քո ոճը։<br>
+          <em>Քո կանոնները։</em>
+
         </h2>
+
 
         <p
           data-hy="Զանգահարիր և պայմանավորվիր այցելության համար։"
-          data-en="Call and book your appointment."
-        >
+          data-en="Call and book your appointment.">
+
           Զանգահարիր և պայմանավորվիր այցելության համար։
+
         </p>
+
 
         <a
           href="tel:+37498044343"
-          class="btn btn-filled hover-target"
-          data-hy="Զանգահարել 098 044 343"
-          data-en="Call 098 044 343"
-        >
-          Զանգահարել 098 044 343
+          class="button gold">
+
+          <span
+            data-hy="098 044 343"
+            data-en="098 044 343">
+
+            098 044 343
+
+          </span>
+
         </a>
+
 
       </div>
 
     </section>
 
 
-    <!-- =========================================
+    <!-- =========================================================
          CONTACT
-    ========================================= -->
+    ========================================================= -->
 
     <section class="contact" id="contact">
 
       <div class="contact-grid">
 
+
         <div class="container contact-info reveal">
+
 
           <div
             class="section-label"
             data-hy="ԿԱՊ"
-            data-en="CONTACT"
-          >
+            data-en="CONTACT">
+
             ԿԱՊ
+
           </div>
+
 
           <h2
             class="section-title"
             data-hy="Հանդիպենք <em>աթոռին</em>"
-            data-en="See you in the <em>chair</em>"
-          >
+            data-en="See you in the <em>chair</em>">
+
             Հանդիպենք <em>աթոռին</em>
+
           </h2>
+
 
           <div class="contact-details">
 
-            <div class="contact-detail">
 
-              <span
+            <div class="contact-item">
+
+              <small
                 data-hy="ՀԵՌԱԽՈՍ"
-                data-en="PHONE"
-              >
-                ՀԵՌԱԽՈՍ
-              </span>
+                data-en="PHONE">
 
-              <a
-                href="tel:+37498044343"
-                class="hover-target"
-              >
+                ՀԵՌԱԽՈՍ
+
+              </small>
+
+              <a href="tel:+37498044343">
                 098 044 343
               </a>
 
             </div>
 
 
-            <div class="contact-detail">
+            <div class="contact-item">
 
-              <span
-                data-hy="ԳՏՆՎՈՒՄ Է"
-                data-en="LOCATION"
-              >
-                ԳՏՆՎՈՒՄ Է
-              </span>
+              <small
+                data-hy="ԳՏՆՎԵԼՈՒ ՎԱՅՐԸ"
+                data-en="LOCATION">
+
+                ԳՏՆՎԵԼՈՒ ՎԱՅՐԸ
+
+              </small>
 
               <strong
                 data-hy="Այգավան, Արարատի մարզ"
-                data-en="Aygavan, Ararat Province"
-              >
+                data-en="Aygavan, Ararat Province">
+
                 Այգավան, Արարատի մարզ
+
               </strong>
 
             </div>
 
 
-            <div class="contact-detail">
+            <div class="contact-item">
 
-              <span
-                data-hy="ԱՇԽԱՏԱՆՔԻ ՈԼՈՐՏ"
-                data-en="SPECIALTY"
-              >
-                ԱՇԽԱՏԱՆՔԻ ՈԼՈՐՏ
-              </span>
+              <small
+                data-hy="ՄԱՍՆԱԳԻՏԱՑՈՒՄ"
+                data-en="SPECIALTY">
 
-              <strong
-                data-hy="Men's Hair & Grooming"
-                data-en="Men's Hair & Grooming"
-              >
+                ՄԱՍՆԱԳԻՏԱՑՈՒՄ
+
+              </small>
+
+              <strong>
                 Men's Hair & Grooming
               </strong>
 
             </div>
+
 
           </div>
 
         </div>
 
 
-        <div class="contact-map">
+        <div class="map">
 
           <div class="location-card">
 
             <small
               data-hy="ՄԵՐ ԳՏՆՎԵԼՈՒ ՎԱՅՐԸ"
-              data-en="OUR LOCATION"
-            >
+              data-en="OUR LOCATION">
+
               ՄԵՐ ԳՏՆՎԵԼՈՒ ՎԱՅՐԸ
+
             </small>
+
 
             <strong
               data-hy="Այգավան • Արարատի մարզ"
-              data-en="Aygavan • Ararat Province"
-            >
+              data-en="Aygavan • Ararat Province">
+
               Այգավան • Արարատի մարզ
+
             </strong>
 
           </div>
 
         </div>
 
+
       </div>
 
     </section>
 
+
   </main>
 
 
-  <!-- =========================================
+  <!-- =========================================================
        FOOTER
-  ========================================= -->
+  ========================================================= -->
 
   <footer>
 
-    <div class="container footer-inner">
+    <div class="container footer">
+
 
       <div class="footer-logo">
         ARMAN
       </div>
 
+
       <div
         class="footer-copy"
         data-hy="© 2026 ARMAN BARBER • ALL RIGHTS RESERVED"
-        data-en="© 2026 ARMAN BARBER • ALL RIGHTS RESERVED"
-      >
+        data-en="© 2026 ARMAN BARBER • ALL RIGHTS RESERVED">
+
         © 2026 ARMAN BARBER • ALL RIGHTS RESERVED
+
       </div>
+
 
       <a
         href="#home"
-        class="back-top hover-target"
-        aria-label="Back to top"
-      >
+        class="top">
+
         ↑
+
       </a>
+
 
     </div>
 
   </footer>
 
 
-  <!-- =========================================
+  <!-- =========================================================
        JAVASCRIPT
-  ========================================= -->
+  ========================================================= -->
 
   <script>
 
-    /* -----------------------------------------
+
+    /* =========================================================
        LOADER
-    ----------------------------------------- */
+    ========================================================= */
 
     window.addEventListener("load", () => {
+
       setTimeout(() => {
-        document.querySelector(".loader").classList.add("hide");
-      }, 900);
+
+        document
+          .querySelector(".loader")
+          .classList.add("hide");
+
+      }, 850);
+
     });
 
 
-    /* -----------------------------------------
+    /* =========================================================
        HEADER
-    ----------------------------------------- */
+    ========================================================= */
 
-    const header = document.getElementById("header");
+    const header =
+      document.getElementById("header");
 
     window.addEventListener("scroll", () => {
 
-      if (window.scrollY > 50) {
+      if(window.scrollY > 50) {
+
         header.classList.add("scrolled");
+
       } else {
+
         header.classList.remove("scrolled");
+
       }
 
     });
 
 
-    /* -----------------------------------------
+    /* =========================================================
        MOBILE MENU
-    ----------------------------------------- */
+    ========================================================= */
 
-    const menuBtn = document.getElementById("menuBtn");
-    const navLinks = document.getElementById("navLinks");
+    const menuButton =
+      document.getElementById("menuButton");
 
-    menuBtn.addEventListener("click", () => {
+    const navLinks =
+      document.getElementById("navLinks");
 
-      menuBtn.classList.toggle("open");
+    menuButton.addEventListener("click", () => {
+
       navLinks.classList.toggle("open");
+
+      menuButton.classList.toggle("open");
+
       document.body.classList.toggle("menu-open");
 
     });
 
 
-    document.querySelectorAll(".nav-links a").forEach(link => {
+    document
+      .querySelectorAll(".nav-links a")
+      .forEach(link => {
 
-      link.addEventListener("click", () => {
+        link.addEventListener("click", () => {
 
-        menuBtn.classList.remove("open");
-        navLinks.classList.remove("open");
-        document.body.classList.remove("menu-open");
+          navLinks.classList.remove("open");
+
+          menuButton.classList.remove("open");
+
+          document.body.classList.remove("menu-open");
+
+        });
 
       });
 
-    });
 
+    /* =========================================================
+       LANGUAGE
+    ========================================================= */
 
-    /* -----------------------------------------
-       LANGUAGE SYSTEM
-    ----------------------------------------- */
+    const languages =
+      document.querySelectorAll(".lang");
 
-    let currentLanguage = "hy";
+    function setLanguage(language) {
 
-    const languageButtons = document.querySelectorAll(".lang-btn");
+      document
+        .querySelectorAll("[data-hy]")
+        .forEach(element => {
 
-    function changeLanguage(language) {
+          if(element.dataset[language]) {
 
-      currentLanguage = language;
+            element.innerHTML =
+              element.dataset[language];
+
+          }
+
+        });
+
 
       document.documentElement.lang =
-        language === "hy" ? "hy" : "en";
+        language === "hy"
+          ? "hy"
+          : "en";
 
-      document.querySelectorAll("[data-hy]").forEach(element => {
 
-        const value = element.dataset[language];
-
-        if (value === undefined) return;
-
-        element.innerHTML = value;
-
-      });
-
-      languageButtons.forEach(button => {
+      languages.forEach(button => {
 
         button.classList.toggle(
           "active",
@@ -2532,55 +3172,63 @@
 
     }
 
-    languageButtons.forEach(button => {
+
+    languages.forEach(button => {
 
       button.addEventListener("click", () => {
-        changeLanguage(button.dataset.lang);
+
+        setLanguage(button.dataset.lang);
+
       });
 
     });
 
 
-    /* -----------------------------------------
-       REVEAL ANIMATIONS
-    ----------------------------------------- */
+    /* =========================================================
+       SCROLL REVEAL
+    ========================================================= */
 
     const revealElements =
       document.querySelectorAll(".reveal");
 
     const revealObserver =
       new IntersectionObserver(
-        (entries, observer) => {
+        entries => {
 
           entries.forEach(entry => {
 
-            if (!entry.isIntersecting) return;
+            if(!entry.isIntersecting) {
+              return;
+            }
 
             entry.target.classList.add("visible");
 
-            observer.unobserve(entry.target);
+            revealObserver.unobserve(entry.target);
 
           });
 
         },
         {
-          threshold: 0.12
+          threshold:.12
         }
       );
 
+
     revealElements.forEach(element => {
+
       revealObserver.observe(element);
+
     });
 
 
-    /* -----------------------------------------
+    /* =========================================================
        CUSTOM CURSOR
-    ----------------------------------------- */
+    ========================================================= */
 
     const cursor =
       document.querySelector(".cursor");
 
-    const cursorRing =
+    const ring =
       document.querySelector(".cursor-ring");
 
     let mouseX = 0;
@@ -2589,73 +3237,77 @@
     let ringX = 0;
     let ringY = 0;
 
-    document.addEventListener("mousemove", (event) => {
 
-      mouseX = event.clientX;
-      mouseY = event.clientY;
+    document.addEventListener(
+      "mousemove",
+      event => {
 
-      cursor.style.left = `${mouseX}px`;
-      cursor.style.top = `${mouseY}px`;
+        mouseX = event.clientX;
+        mouseY = event.clientY;
 
-    });
+        cursor.style.left =
+          mouseX + "px";
 
-    function animateCursor() {
+        cursor.style.top =
+          mouseY + "px";
 
-      ringX += (mouseX - ringX) * 0.12;
-      ringY += (mouseY - ringY) * 0.12;
+      }
+    );
 
-      cursorRing.style.left = `${ringX}px`;
-      cursorRing.style.top = `${ringY}px`;
 
-      requestAnimationFrame(animateCursor);
+    function cursorAnimation() {
+
+      ringX +=
+        (mouseX - ringX) * .12;
+
+      ringY +=
+        (mouseY - ringY) * .12;
+
+
+      ring.style.left =
+        ringX + "px";
+
+      ring.style.top =
+        ringY + "px";
+
+
+      requestAnimationFrame(cursorAnimation);
 
     }
 
-    animateCursor();
+    cursorAnimation();
 
 
-    document.querySelectorAll(".hover-target").forEach(element => {
-
-      element.addEventListener("mouseenter", () => {
-        document.body.classList.add("cursor-hover");
-      });
-
-      element.addEventListener("mouseleave", () => {
-        document.body.classList.remove("cursor-hover");
-      });
-
-    });
-
-
-    /* -----------------------------------------
-       IMAGE PARALLAX
-    ----------------------------------------- */
+    /* =========================================================
+       HERO PARALLAX
+    ========================================================= */
 
     const heroPhoto =
       document.querySelector(".hero-photo");
 
+
     window.addEventListener("scroll", () => {
 
-      if (window.innerWidth > 900) {
+      if(window.innerWidth > 900) {
 
-        const scroll =
-          window.scrollY;
+        const offset =
+          window.scrollY * .10;
 
         heroPhoto.style.transform =
-          `translateY(${scroll * 0.12}px) scale(1.03)`;
+          `translateY(${offset}px) scale(1.03)`;
 
       }
 
     });
 
 
-    /* -----------------------------------------
-       STAGGER SERVICE ANIMATION
-    ----------------------------------------- */
+    /* =========================================================
+       STAGGER ANIMATIONS
+    ========================================================= */
 
     document
-      .querySelectorAll(".services-grid .service")
-      .forEach((card, index) => {
+      .querySelectorAll(".service")
+      .forEach((card,index) => {
 
         card.style.transitionDelay =
           `${index * 70}ms`;
@@ -2663,71 +3315,15 @@
       });
 
 
-    /* -----------------------------------------
-       PREVENT BROKEN IMAGE EXPERIENCE
-    ----------------------------------------- */
+    document
+      .querySelectorAll(".atmosphere-card")
+      .forEach((card,index) => {
 
-    document.querySelectorAll("img").forEach(img => {
-
-      img.addEventListener("error", () => {
-
-        img.style.background =
-          "linear-gradient(135deg,#111,#222)";
-
-        img.style.minHeight = "250px";
-
-        img.removeAttribute("src");
+        card.style.transitionDelay =
+          `${index * 100}ms`;
 
       });
 
-    });
-
-
-    /* -----------------------------------------
-       ACTIVE NAV ON SCROLL
-    ----------------------------------------- */
-
-    const sections =
-      document.querySelectorAll("main section[id]");
-
-    const navAnchors =
-      document.querySelectorAll(".nav-links a");
-
-    const activeObserver =
-      new IntersectionObserver(
-        entries => {
-
-          entries.forEach(entry => {
-
-            if (entry.isIntersecting) {
-
-              navAnchors.forEach(anchor => {
-
-                anchor.style.color = "";
-
-                if (
-                  anchor.getAttribute("href") ===
-                  `#${entry.target.id}`
-                ) {
-                  anchor.style.color =
-                    "var(--gold-light)";
-                }
-
-              });
-
-            }
-
-          });
-
-        },
-        {
-          threshold: 0.35
-        }
-      );
-
-    sections.forEach(section => {
-      activeObserver.observe(section);
-    });
 
   </script>
 
