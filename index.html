@@ -1,6 +1,2006 @@
-<!-- =========================================================
- SERVICES — NO PRICES HERE
-========================================================= -->
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Barber Arman — Men's Hair & Grooming</title>
+
+<meta name="description"
+content="Barber Arman — տղամարդկանց մազերի և մորուքի խնամք։ Այգավան, Արարատի մարզ։">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700&family=Noto+Sans+Armenian:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+  --black:#050505;
+  --black2:#090909;
+  --black3:#11100e;
+
+  --gold:#c6a15b;
+  --gold2:#e6c982;
+  --gold3:#8e6d34;
+
+  --cream:#f4efe5;
+  --muted:#8b877f;
+
+  --border:rgba(198,161,91,.22);
+
+  --serif:"Cormorant Garamond",Georgia,serif;
+  --sans:"Manrope","Noto Sans Armenian",sans-serif;
+
+  --ease:cubic-bezier(.2,.8,.2,1);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+  scroll-padding-top:90px;
+}
+
+body{
+  background:var(--black);
+  color:var(--cream);
+  font-family:var(--sans);
+  line-height:1.7;
+  overflow-x:hidden;
+}
+
+body.menu-open{
+  overflow:hidden;
+}
+
+img{
+  display:block;
+  max-width:100%;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+button{
+  font:inherit;
+}
+
+::selection{
+  background:var(--gold);
+  color:#000;
+}
+
+.container{
+  width:min(1160px,calc(100% - 40px));
+  margin:auto;
+}
+
+
+/* =========================
+   LOADER
+========================= */
+
+.loader{
+  position:fixed;
+  inset:0;
+  z-index:99999;
+
+  display:grid;
+  place-items:center;
+
+  background:#050505;
+
+  transition:
+    opacity .8s ease,
+    visibility .8s ease;
+}
+
+.loader.hide{
+  opacity:0;
+  visibility:hidden;
+}
+
+.loader-logo{
+  font-family:var(--serif);
+  font-size:58px;
+  letter-spacing:.18em;
+  color:var(--gold2);
+  text-align:center;
+}
+
+.loader-line{
+  width:110px;
+  height:1px;
+  background:var(--gold);
+  margin:12px auto;
+  animation:pulse 1.5s infinite;
+}
+
+.loader-small{
+  text-align:center;
+  font-size:8px;
+  color:#666;
+  letter-spacing:.4em;
+}
+
+@keyframes pulse{
+  50%{
+    transform:scaleX(.35);
+    opacity:.4;
+  }
+}
+
+
+/* =========================
+   CUSTOM CURSOR
+========================= */
+
+.cursor,
+.cursor-ring{
+  position:fixed;
+  pointer-events:none;
+  z-index:99998;
+  transform:translate(-50%,-50%);
+}
+
+.cursor{
+  width:5px;
+  height:5px;
+  background:var(--gold);
+  border-radius:50%;
+}
+
+.cursor-ring{
+  width:31px;
+  height:31px;
+  border:1px solid rgba(198,161,91,.6);
+  border-radius:50%;
+}
+
+@media(max-width:900px){
+  .cursor,
+  .cursor-ring{
+    display:none;
+  }
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:5000;
+  transition:.4s;
+}
+
+header.scrolled{
+  background:rgba(5,5,5,.9);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(198,161,91,.12);
+}
+
+.nav{
+  height:86px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.logo{
+  font-family:var(--serif);
+  color:var(--gold2);
+  font-size:25px;
+  line-height:1;
+  letter-spacing:.13em;
+}
+
+.logo small{
+  display:block;
+  margin-top:6px;
+
+  color:#68645d;
+  font-family:var(--sans);
+  font-size:6px;
+  letter-spacing:.34em;
+}
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:27px;
+}
+
+.nav-links a{
+  color:#99958d;
+  font-size:10px;
+  transition:.3s;
+}
+
+.nav-links a:hover{
+  color:var(--gold2);
+}
+
+.languages{
+  display:flex;
+  padding:3px;
+  border:1px solid var(--border);
+}
+
+.lang{
+  border:0;
+  background:none;
+  color:#666;
+  padding:5px 8px;
+  font-size:8px;
+  cursor:pointer;
+}
+
+.lang.active{
+  background:var(--gold);
+  color:#000;
+}
+
+.menu-button{
+  display:none;
+
+  width:43px;
+  height:43px;
+
+  background:none;
+  border:0;
+  cursor:pointer;
+}
+
+.menu-button span{
+  display:block;
+  width:23px;
+  height:1px;
+  background:var(--gold);
+  margin:6px auto;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+  position:relative;
+  min-height:100vh;
+
+  display:flex;
+  align-items:center;
+
+  overflow:hidden;
+
+  background:
+    radial-gradient(
+      circle at 72% 48%,
+      rgba(198,161,91,.13),
+      transparent 34%
+    ),
+    #070707;
+}
+
+.hero-photo{
+  position:absolute;
+  right:0;
+  top:0;
+
+  width:57%;
+  height:100%;
+
+  object-fit:cover;
+  object-position:center;
+
+  opacity:.76;
+
+  filter:
+    grayscale(.08)
+    contrast(1.08)
+    saturate(.72);
+
+  transform:scale(1.035);
+
+  transition:transform 1.2s var(--ease);
+}
+
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0,0,0,.98) 0%,
+      rgba(0,0,0,.82) 40%,
+      rgba(0,0,0,.15) 100%
+    );
+}
+
+.hero-circle{
+  position:absolute;
+
+  width:680px;
+  height:680px;
+
+  right:-330px;
+  top:50%;
+
+  transform:translateY(-50%);
+
+  border:1px solid rgba(198,161,91,.08);
+  border-radius:50%;
+
+  box-shadow:
+    0 0 0 70px rgba(198,161,91,.025),
+    0 0 0 140px rgba(198,161,91,.014);
+
+  animation:rotate 40s linear infinite;
+}
+
+@keyframes rotate{
+  to{
+    transform:translateY(-50%) rotate(360deg);
+  }
+}
+
+.hero-content{
+  position:relative;
+  z-index:2;
+
+  width:58%;
+
+  padding-top:65px;
+}
+
+.eyebrow{
+  color:var(--gold);
+
+  font-size:9px;
+  letter-spacing:.38em;
+
+  margin-bottom:23px;
+
+  opacity:0;
+  animation:heroIn .8s .2s forwards;
+}
+
+.hero-title{
+  font-family:var(--serif);
+  font-weight:500;
+
+  font-size:clamp(58px,7vw,88px);
+  line-height:.84;
+
+  max-width:510px;
+
+  opacity:0;
+  animation:heroIn .9s .35s forwards;
+}
+
+.hero-title span{
+  display:block;
+}
+
+.hero-title .gold{
+  color:var(--gold2);
+  font-style:italic;
+  margin-left:48px;
+}
+
+.hero-phone{
+  display:inline-flex;
+  align-items:center;
+  gap:13px;
+
+  margin-top:25px;
+
+  color:var(--gold2);
+
+  font-family:var(--serif);
+  font-size:24px;
+
+  transition:.3s;
+
+  opacity:0;
+  animation:heroIn .8s .55s forwards;
+}
+
+.hero-phone::before{
+  content:"";
+
+  width:31px;
+  height:1px;
+
+  background:var(--gold);
+}
+
+.hero-phone:hover{
+  transform:translateX(5px);
+  color:#fff;
+}
+
+.hero-description{
+  max-width:500px;
+
+  margin-top:22px;
+
+  color:#9b978f;
+
+  font-size:13px;
+  line-height:2;
+
+  opacity:0;
+  animation:heroIn .8s .7s forwards;
+}
+
+.hero-buttons{
+  display:flex;
+  gap:12px;
+
+  margin-top:30px;
+
+  opacity:0;
+  animation:heroIn .8s .85s forwards;
+}
+
+.button{
+  position:relative;
+  overflow:hidden;
+
+  min-height:49px;
+
+  padding:0 27px;
+
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  border:1px solid var(--gold);
+
+  color:var(--gold2);
+
+  font-size:9px;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+
+  transition:.4s var(--ease);
+}
+
+.button::before{
+  content:"";
+
+  position:absolute;
+  inset:0;
+
+  background:var(--gold);
+
+  transform:translateY(100%);
+
+  transition:.4s;
+}
+
+.button span{
+  position:relative;
+  z-index:2;
+}
+
+.button:hover{
+  color:#000;
+}
+
+.button:hover::before{
+  transform:translateY(0);
+}
+
+.button.gold{
+  background:var(--gold);
+  color:#000;
+}
+
+.scroll{
+  position:absolute;
+  z-index:3;
+
+  left:35px;
+  bottom:30px;
+
+  display:flex;
+  align-items:center;
+  gap:11px;
+
+  color:#555;
+
+  font-size:8px;
+  letter-spacing:.25em;
+}
+
+.scroll-line{
+  width:48px;
+  height:1px;
+  background:var(--gold);
+}
+
+@keyframes heroIn{
+  from{
+    opacity:0;
+    transform:translateY(25px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+
+/* =========================
+   SECTIONS
+========================= */
+
+section{
+  position:relative;
+  padding:125px 0;
+}
+
+.section-label{
+  color:var(--gold);
+
+  font-size:9px;
+  letter-spacing:.35em;
+
+  margin-bottom:17px;
+}
+
+.section-title{
+  font-family:var(--serif);
+
+  font-size:clamp(48px,6vw,78px);
+
+  line-height:.94;
+
+  font-weight:500;
+}
+
+.section-title em{
+  color:var(--gold2);
+}
+
+.section-text{
+  max-width:550px;
+
+  color:#858078;
+
+  font-size:13px;
+  line-height:2;
+
+  margin-top:22px;
+}
+
+.reveal{
+  opacity:0;
+  transform:translateY(35px);
+
+  transition:
+    opacity .9s ease,
+    transform .9s var(--ease);
+}
+
+.reveal.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+
+/* =========================
+   QUICK INFO
+========================= */
+
+.quick-info{
+  padding:27px 0;
+
+  background:#0a0a09;
+
+  border-top:1px solid rgba(198,161,91,.13);
+  border-bottom:1px solid rgba(198,161,91,.13);
+}
+
+.quick-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+}
+
+.quick-item{
+  text-align:center;
+
+  padding:6px 20px;
+
+  border-right:1px solid rgba(198,161,91,.12);
+}
+
+.quick-item:last-child{
+  border-right:0;
+}
+
+.quick-label{
+  display:block;
+
+  color:#5b5852;
+
+  font-size:8px;
+  letter-spacing:.2em;
+
+  margin-bottom:3px;
+}
+
+.quick-value{
+  display:block;
+
+  color:var(--gold2);
+
+  font-family:var(--serif);
+  font-size:27px;
+}
+
+.quick-value.small{
+  font-family:var(--sans);
+  font-size:15px;
+  font-weight:500;
+}
+
+
+/* =========================
+   ABOUT
+========================= */
+
+.about{
+  background:
+    radial-gradient(
+      circle at 10% 50%,
+      rgba(198,161,91,.055),
+      transparent 28%
+    ),
+    var(--black2);
+}
+
+.about-grid{
+  display:grid;
+  grid-template-columns:.9fr 1.1fr;
+
+  gap:90px;
+
+  align-items:center;
+}
+
+.about-image-wrap{
+  position:relative;
+}
+
+.about-image{
+  width:100%;
+  height:600px;
+
+  object-fit:cover;
+  object-position:center 30%;
+}
+
+.about-frame{
+  position:absolute;
+
+  inset:16px -16px -16px 16px;
+
+  border:1px solid var(--border);
+
+  z-index:0;
+  pointer-events:none;
+}
+
+.about-index{
+  position:absolute;
+
+  bottom:24px;
+  left:-17px;
+
+  padding:8px 16px;
+
+  background:var(--gold);
+  color:#000;
+
+  font-family:var(--serif);
+  font-size:25px;
+}
+
+.about-copy{
+  color:#89857e;
+
+  font-size:13px;
+  line-height:2;
+
+  margin-top:27px;
+}
+
+.qualities{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+
+  gap:15px;
+
+  margin-top:38px;
+}
+
+.quality{
+  padding-top:13px;
+
+  border-top:1px solid var(--border);
+}
+
+.quality strong{
+  display:block;
+
+  color:var(--gold2);
+
+  font-family:var(--serif);
+  font-size:23px;
+}
+
+.quality span{
+  color:#68645e;
+  font-size:8px;
+}
+
+
+/* =========================
+   LUXURY QUOTE
+========================= */
+
+.quote-section{
+  padding:105px 0;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(198,161,91,.055),
+      transparent 50%
+    ),
+    #080808;
+
+  overflow:hidden;
+}
+
+.quote{
+  max-width:900px;
+
+  margin:auto;
+
+  text-align:center;
+}
+
+.quote-mark{
+  font-family:Georgia,serif;
+
+  font-size:105px;
+  line-height:.4;
+
+  color:var(--gold);
+
+  opacity:.3;
+}
+
+.quote-text{
+  font-family:var(--serif);
+
+  font-size:clamp(34px,4vw,55px);
+
+  line-height:1.05;
+
+  color:#e8e1d4;
+}
+
+.quote-text em{
+  color:var(--gold2);
+}
+
+.quote-author{
+  margin-top:26px;
+
+  color:#555;
+
+  font-size:8px;
+  letter-spacing:.3em;
+}
+
+
+/* =========================
+   SERVICES
+========================= */
+
+.services-heading{
+  display:flex;
+
+  justify-content:space-between;
+  align-items:end;
+
+  gap:50px;
+
+  margin-bottom:55px;
+}
+
+.services-grid{
+  display:grid;
+
+  grid-template-columns:repeat(2,1fr);
+
+  gap:2px;
+}
+
+.service{
+  position:relative;
+
+  min-height:245px;
+
+  padding:35px;
+
+  background:var(--black3);
+
+  border:1px solid rgba(255,255,255,.025);
+
+  overflow:hidden;
+
+  transition:.45s var(--ease);
+}
+
+.service::after{
+  content:"";
+
+  position:absolute;
+
+  width:160px;
+  height:160px;
+
+  right:-100px;
+  bottom:-100px;
+
+  border-radius:50%;
+
+  border:1px solid rgba(198,161,91,.12);
+
+  transition:.6s;
+}
+
+.service:hover{
+  transform:translateY(-5px);
+  border-color:var(--border);
+}
+
+.service:hover::after{
+  right:-60px;
+  bottom:-60px;
+}
+
+.service-number{
+  color:#46433d;
+
+  font-family:var(--serif);
+  font-size:38px;
+}
+
+.service h3{
+  font-family:var(--serif);
+
+  font-size:31px;
+  font-weight:500;
+
+  margin-top:12px;
+}
+
+.service p{
+  max-width:450px;
+
+  color:#77736c;
+
+  font-size:11px;
+
+  margin-top:8px;
+
+  line-height:1.9;
+}
+
+.service-price{
+  position:absolute;
+
+  right:29px;
+  top:31px;
+
+  color:var(--gold2);
+
+  font-family:var(--serif);
+  font-size:25px;
+
+  white-space:nowrap;
+}
+
+.service.full{
+  grid-column:1/-1;
+}
+
+
+/* =========================
+   STYLE / GALLERY
+========================= */
+
+.style{
+  background:#080808;
+}
+
+.style-note{
+  max-width:650px;
+
+  color:#68645d;
+
+  font-size:11px;
+
+  line-height:1.9;
+
+  margin-top:18px;
+}
+
+.gallery{
+  margin-top:52px;
+
+  display:grid;
+
+  grid-template-columns:1.2fr .8fr;
+
+  grid-template-rows:260px 260px;
+
+  gap:12px;
+}
+
+.gallery-item{
+  position:relative;
+
+  overflow:hidden;
+
+  background:#111;
+
+  min-height:200px;
+}
+
+.gallery-item.large{
+  grid-row:1/3;
+}
+
+.gallery-item img{
+  width:100%;
+  height:100%;
+
+  object-fit:cover;
+
+  transition:
+    transform .8s var(--ease),
+    filter .6s;
+}
+
+.gallery-item:hover img{
+  transform:scale(1.06);
+
+  filter:brightness(.62);
+}
+
+.gallery-overlay{
+  position:absolute;
+  inset:0;
+
+  display:flex;
+  align-items:end;
+
+  padding:25px;
+
+  background:
+    linear-gradient(
+      transparent 35%,
+      rgba(0,0,0,.9)
+    );
+}
+
+.gallery-overlay span{
+  font-family:var(--serif);
+
+  font-size:27px;
+
+  color:var(--gold2);
+}
+
+
+/* =========================
+   PRICE — ONLY ONE PLACE
+========================= */
+
+.prices{
+  background:
+    linear-gradient(
+      rgba(5,5,5,.94),
+      rgba(5,5,5,.98)
+    ),
+    url("https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=1800&q=85");
+
+  background-size:cover;
+  background-position:center;
+  background-attachment:fixed;
+}
+
+.price-layout{
+  display:grid;
+
+  grid-template-columns:.75fr 1.25fr;
+
+  gap:90px;
+
+  align-items:center;
+}
+
+.price-intro p{
+  max-width:410px;
+
+  color:#77736c;
+
+  font-size:12px;
+
+  line-height:2;
+
+  margin-top:23px;
+}
+
+.price-list{
+  border-top:1px solid var(--border);
+}
+
+.price-row{
+  display:flex;
+
+  align-items:center;
+  justify-content:space-between;
+
+  gap:30px;
+
+  padding:23px 0;
+
+  border-bottom:1px solid rgba(255,255,255,.07);
+}
+
+.price-name{
+  font-family:var(--serif);
+
+  font-size:25px;
+
+  color:#ddd7cc;
+}
+
+.price-desc{
+  display:block;
+
+  color:#62605b;
+
+  font-size:9px;
+
+  margin-top:1px;
+}
+
+.price-value{
+  color:var(--gold2);
+
+  font-family:var(--serif);
+
+  font-size:29px;
+
+  white-space:nowrap;
+}
+
+.price-row.highlight{
+  padding:28px 0;
+}
+
+.price-row.highlight .price-name{
+  font-size:30px;
+}
+
+.price-row.highlight .price-value{
+  font-size:34px;
+}
+
+
+/* =========================
+   ATMOSPHERE
+========================= */
+
+.atmosphere-grid{
+  display:grid;
+
+  grid-template-columns:repeat(3,1fr);
+
+  gap:13px;
+
+  margin-top:55px;
+}
+
+.atmosphere-card{
+  min-height:260px;
+
+  padding:32px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #12110f,
+      #080808
+    );
+
+  border:1px solid rgba(255,255,255,.06);
+
+  transition:.45s var(--ease);
+}
+
+.atmosphere-card:hover{
+  transform:translateY(-7px);
+
+  border-color:var(--border);
+}
+
+.icon{
+  color:var(--gold);
+
+  font-size:27px;
+
+  margin-bottom:30px;
+}
+
+.atmosphere-card h3{
+  font-family:var(--serif);
+
+  font-size:28px;
+}
+
+.atmosphere-card p{
+  color:#6d6962;
+
+  font-size:11px;
+
+  margin-top:9px;
+}
+
+
+/* =========================
+   SECOND QUOTE
+========================= */
+
+.mini-quote{
+  text-align:center;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(198,161,91,.09),
+      transparent 45%
+    ),
+    #080808;
+}
+
+.mini-quote-text{
+  max-width:900px;
+
+  margin:auto;
+
+  font-family:var(--serif);
+
+  font-size:clamp(34px,4vw,57px);
+
+  line-height:1;
+}
+
+.mini-quote-text span{
+  color:var(--gold2);
+  font-style:italic;
+}
+
+
+/* =========================
+   CTA
+========================= */
+
+.cta{
+  padding:145px 0;
+
+  text-align:center;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(198,161,91,.12),
+      transparent 42%
+    ),
+    #080808;
+}
+
+.cta-title{
+  font-family:var(--serif);
+
+  font-size:clamp(55px,8vw,100px);
+
+  line-height:.87;
+
+  font-weight:500;
+}
+
+.cta-title em{
+  color:var(--gold2);
+}
+
+.cta p{
+  color:#74706a;
+
+  font-size:12px;
+
+  margin:23px auto 30px;
+}
+
+
+/* =========================
+   CONTACT / MAP
+========================= */
+
+.contact{
+  padding:0;
+}
+
+.contact-grid{
+  display:grid;
+
+  grid-template-columns:1fr 1fr;
+}
+
+.contact-info{
+  padding:100px 12% 100px 0;
+}
+
+.contact-details{
+  margin-top:35px;
+}
+
+.contact-item{
+  padding:18px 0;
+
+  border-bottom:1px solid rgba(255,255,255,.07);
+}
+
+.contact-item small{
+  color:#5d5953;
+
+  font-size:8px;
+
+  letter-spacing:.2em;
+}
+
+.contact-item a,
+.contact-item strong{
+  display:block;
+
+  margin-top:3px;
+
+  color:var(--gold2);
+
+  font-family:var(--serif);
+
+  font-size:25px;
+
+  font-weight:500;
+}
+
+.map-wrap{
+  position:relative;
+
+  min-height:540px;
+
+  background:#0a0a0a;
+}
+
+.map-wrap iframe{
+  width:100%;
+  height:100%;
+
+  min-height:540px;
+
+  border:0;
+
+  filter:
+    grayscale(.85)
+    contrast(1.1)
+    brightness(.72);
+}
+
+.map-overlay{
+  position:absolute;
+
+  left:25px;
+  bottom:25px;
+
+  width:calc(100% - 50px);
+
+  padding:20px 23px;
+
+  background:rgba(5,5,5,.91);
+
+  border:1px solid var(--border);
+
+  backdrop-filter:blur(12px);
+}
+
+.map-overlay small{
+  color:var(--gold);
+
+  font-size:8px;
+
+  letter-spacing:.2em;
+}
+
+.map-overlay strong{
+  display:block;
+
+  margin-top:3px;
+
+  color:#eee;
+
+  font-family:var(--serif);
+
+  font-size:25px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+  padding:35px 0;
+
+  background:#050505;
+
+  border-top:1px solid rgba(255,255,255,.06);
+}
+
+.footer{
+  display:flex;
+
+  align-items:center;
+  justify-content:space-between;
+}
+
+.footer-logo{
+  color:var(--gold);
+
+  font-family:var(--serif);
+
+  font-size:27px;
+
+  letter-spacing:.12em;
+}
+
+.footer-copy{
+  color:#4d4b47;
+
+  font-size:8px;
+
+  letter-spacing:.08em;
+}
+
+.top{
+  width:38px;
+  height:38px;
+
+  display:grid;
+  place-items:center;
+
+  border:1px solid var(--border);
+
+  color:var(--gold);
+
+  transition:.3s;
+}
+
+.top:hover{
+  background:var(--gold);
+  color:#000;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:900px){
+
+  .container{
+    width:min(100% - 30px,650px);
+  }
+
+  .nav{
+    height:72px;
+  }
+
+  .menu-button{
+    display:block;
+  }
+
+  .nav-links{
+    position:fixed;
+    inset:0;
+
+    background:rgba(5,5,5,.98);
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+
+    gap:27px;
+
+    transform:translateX(100%);
+
+    transition:.5s;
+  }
+
+  .nav-links.open{
+    transform:translateX(0);
+  }
+
+  .nav-links a{
+    font-size:17px;
+  }
+
+  .hero{
+    min-height:850px;
+
+    align-items:end;
+
+    padding-bottom:90px;
+  }
+
+  .hero-photo{
+    width:100%;
+    height:76%;
+
+    opacity:.56;
+
+    mask-image:
+      linear-gradient(
+        to bottom,
+        transparent,
+        black 42%
+      );
+  }
+
+  .hero::after{
+    background:
+      linear-gradient(
+        to bottom,
+        rgba(0,0,0,.03),
+        rgba(0,0,0,.95) 76%
+      );
+  }
+
+  .hero-content{
+    width:100%;
+    padding-top:100px;
+  }
+
+  .hero-title{
+    font-size:68px;
+  }
+
+  .hero-title .gold{
+    margin-left:18px;
+  }
+
+  .hero-buttons{
+    flex-direction:column;
+    align-items:stretch;
+  }
+
+  .button{
+    width:100%;
+  }
+
+  .quick-grid{
+    grid-template-columns:1fr;
+    gap:18px;
+  }
+
+  .quick-item{
+    border-right:0;
+
+    border-bottom:1px solid rgba(198,161,91,.1);
+
+    padding-bottom:17px;
+  }
+
+  .quick-item:last-child{
+    border-bottom:0;
+    padding-bottom:0;
+  }
+
+  .about-grid,
+  .price-layout,
+  .contact-grid{
+    grid-template-columns:1fr;
+  }
+
+  .about-grid{
+    gap:60px;
+  }
+
+  .about-image{
+    height:500px;
+  }
+
+  .qualities{
+    grid-template-columns:1fr;
+    gap:18px;
+  }
+
+  .services-heading{
+    display:block;
+  }
+
+  .services-grid{
+    grid-template-columns:1fr;
+  }
+
+  .service.full{
+    grid-column:auto;
+  }
+
+  .gallery{
+    grid-template-columns:1fr;
+
+    grid-template-rows:
+      330px
+      230px
+      230px;
+  }
+
+  .gallery-item.large{
+    grid-row:auto;
+  }
+
+  .prices{
+    background-attachment:scroll;
+  }
+
+  .price-layout{
+    gap:55px;
+  }
+
+  .atmosphere-grid{
+    grid-template-columns:1fr;
+  }
+
+  .contact-info{
+    padding:80px 0;
+  }
+
+  .map-wrap{
+    min-height:420px;
+  }
+
+  .map-wrap iframe{
+    min-height:420px;
+  }
+
+  .footer{
+    flex-direction:column;
+
+    gap:17px;
+
+    text-align:center;
+  }
+}
+
+
+@media(max-width:550px){
+
+  .logo{
+    font-size:23px;
+  }
+
+  .hero-title{
+    font-size:59px;
+  }
+
+  .hero-phone{
+    font-size:22px;
+  }
+
+  .price-row{
+    align-items:flex-start;
+  }
+
+  .price-name{
+    font-size:21px;
+  }
+
+  .price-value{
+    font-size:24px;
+  }
+
+  .price-row.highlight .price-name{
+    font-size:25px;
+  }
+
+  .price-row.highlight .price-value{
+    font-size:27px;
+  }
+
+  .map-overlay{
+    left:15px;
+    bottom:15px;
+
+    width:calc(100% - 30px);
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- LOADER -->
+
+<div class="loader" id="loader">
+  <div>
+    <div class="loader-logo">ARMAN</div>
+    <div class="loader-line"></div>
+    <div class="loader-small">BARBER & GROOMING</div>
+  </div>
+</div>
+
+<div class="cursor"></div>
+<div class="cursor-ring"></div>
+
+
+<!-- HEADER -->
+
+<header id="header">
+
+  <div class="container nav">
+
+    <a href="#home" class="logo">
+      BARBER ARMAN
+      <small>MEN'S HAIR & GROOMING</small>
+    </a>
+
+    <nav class="nav-links" id="navLinks">
+
+      <a href="#about"
+         data-hy="Իմ մասին"
+         data-en="About">
+         Իմ մասին
+      </a>
+
+      <a href="#services"
+         data-hy="Ծառայություններ"
+         data-en="Services">
+         Ծառայություններ
+      </a>
+
+      <a href="#style"
+         data-hy="Ոճ"
+         data-en="Style">
+         Ոճ
+      </a>
+
+      <a href="#prices"
+         data-hy="Գներ"
+         data-en="Prices">
+         Գներ
+      </a>
+
+      <a href="#contact"
+         data-hy="Կապ"
+         data-en="Contact">
+         Կապ
+      </a>
+
+      <div class="languages">
+
+        <button class="lang active" data-lang="hy">
+          ՀԱՅ
+        </button>
+
+        <button class="lang" data-lang="en">
+          EN
+        </button>
+
+      </div>
+
+    </nav>
+
+    <button class="menu-button" id="menuButton">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+  </div>
+
+</header>
+
+
+<main>
+
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+  <div class="hero-circle"></div>
+
+  <img
+    class="hero-photo"
+    src="https://cdn.shopify.com/s/files/1/0760/6314/6136/files/5188419493024176446.jpg?v=1786804497"
+    alt="Barber Arman"
+    onerror="this.style.display='none'"
+  >
+
+  <div class="container">
+
+    <div class="hero-content">
+
+      <div
+        class="eyebrow"
+        data-hy="ՏՂԱՄԱՐԴԿԱՆՑ ՄԱԶԵՐ • ՄՈՐՈՒՔ • ԽՆԱՄՔ"
+        data-en="MEN'S HAIR • BEARD • GROOMING">
+        ՏՂԱՄԱՐԴԿԱՆՑ ՄԱԶԵՐ • ՄՈՐՈՒՔ • ԽՆԱՄՔ
+      </div>
+
+      <h1 class="hero-title">
+        <span>Barber</span>
+        <span class="gold">Arman</span>
+      </h1>
+
+      <a
+        class="hero-phone"
+        href="tel:+37498044343">
+        098 044 343
+      </a>
+
+      <p
+        class="hero-description"
+        data-hy="Տղամարդկանց սանրվածք և մորուքի խնամք՝ հանգիստ մթնոլորտում, անհատական մոտեցմամբ և մանրուքների նկատմամբ ուշադրությամբ։"
+        data-en="Men's haircuts and beard grooming with a personal approach, a calm atmosphere and attention to every detail.">
+        Տղամարդկանց սանրվածք և մորուքի խնամք՝ հանգիստ մթնոլորտում, անհատական մոտեցմամբ և մանրուքների նկատմամբ ուշադրությամբ։
+      </p>
+
+      <div class="hero-buttons">
+
+        <a href="#services" class="button gold">
+          <span
+            data-hy="Տեսնել ծառայությունները"
+            data-en="View services">
+            Տեսնել ծառայությունները
+          </span>
+        </a>
+
+        <a href="tel:+37498044343" class="button">
+          <span
+            data-hy="Գրանցվել"
+            data-en="Book now">
+            Գրանցվել
+          </span>
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="scroll">
+    <div class="scroll-line"></div>
+    SCROLL
+  </div>
+
+</section>
+
+
+<!-- IMPORTANT INFORMATION -->
+
+<section class="quick-info">
+
+  <div class="container quick-grid">
+
+    <div class="quick-item">
+
+      <span
+        class="quick-label"
+        data-hy="ՀԵՌԱԽՈՍ"
+        data-en="PHONE">
+        ՀԵՌԱԽՈՍ
+      </span>
+
+      <a
+        href="tel:+37498044343"
+        class="quick-value">
+        098 044 343
+      </a>
+
+    </div>
+
+    <div class="quick-item">
+
+      <span
+        class="quick-label"
+        data-hy="ՎԱՅՐ"
+        data-en="LOCATION">
+        ՎԱՅՐ
+      </span>
+
+      <span
+        class="quick-value small"
+        data-hy="Այգավան • Արարատի մարզ"
+        data-en="Aygavan • Ararat Province">
+        Այգավան • Արարատի մարզ
+      </span>
+
+    </div>
+
+    <div class="quick-item">
+
+      <span
+        class="quick-label"
+        data-hy="ՄԱՍՆԱԳԻՏԱՑՈՒՄ"
+        data-en="SPECIALTY">
+        ՄԱՍՆԱԳԻՏԱՑՈՒՄ
+      </span>
+
+      <span
+        class="quick-value small"
+        data-hy="Միայն տղամարդկանց"
+        data-en="Men's grooming only">
+        Միայն տղամարդկանց
+      </span>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section class="about" id="about">
+
+  <div class="container about-grid">
+
+    <div class="about-image-wrap reveal">
+
+      <img
+        class="about-image"
+        src="https://cdn.shopify.com/s/files/1/0760/6314/6136/files/5188419493024176446.jpg?v=1786804497"
+        alt="Barber Arman"
+        onerror="this.style.display='none'"
+      >
+
+      <div class="about-frame"></div>
+
+      <div class="about-index">01</div>
+
+    </div>
+
+    <div class="reveal">
+
+      <div
+        class="section-label"
+        data-hy="ԻՄ ՄԱՍԻՆ"
+        data-en="ABOUT ME">
+        ԻՄ ՄԱՍԻՆ
+      </div>
+
+      <h2
+        class="section-title"
+        data-hy="Հանգիստ մոտեցում։<br><em>Ճիշտ մանրուքներ։</em>"
+        data-en="Calm approach.<br><em>Perfect details.</em>">
+        Հանգիստ մոտեցում։<br>
+        <em>Ճիշտ մանրուքներ։</em>
+      </h2>
+
+      <p
+        class="about-copy"
+        data-hy="Ես Արմանն եմ։ Աշխատում եմ միայն տղամարդկանց մազերի և մորուքի ուղղությամբ։ Ինձ համար լավ արդյունքը միայն գեղեցիկ սանրվածքը չէ․ կարևոր է նաև այն հանգիստ ու վստահ զգացողությունը, որով հաճախորդը հեռանում է սրահից։"
+        data-en="I'm Arman. I specialize exclusively in men's hair and beard grooming. For me, a good result is more than a haircut — it is the calm and confident feeling a client leaves with.">
+        Ես Արմանն եմ։ Աշխատում եմ միայն տղամարդկանց մազերի և մորուքի ուղղությամբ։ Ինձ համար լավ արդյունքը միայն գեղեցիկ սանրվածքը չէ․ կարևոր է նաև այն հանգիստ ու վստահ զգացողությունը, որով հաճախորդը հեռանում է սրահից։
+      </p>
+
+      <div class="qualities">
+
+        <div class="quality">
+          <strong>01</strong>
+          <span
+            data-hy="ՀԱՆԳԻՍՏ ՄՈՏԵՑՈՒՄ"
+            data-en="CALM APPROACH">
+            ՀԱՆԳԻՍՏ ՄՈՏԵՑՈՒՄ
+          </span>
+        </div>
+
+        <div class="quality">
+          <strong>02</strong>
+          <span
+            data-hy="ՄԱՆՐՈՒՔՆԵՐԻ ՆԿԱՏՄԱՄԲ ՈՒՇԱԴՐՈՒԹՅՈՒՆ"
+            data-en="ATTENTION TO DETAIL">
+            ՄԱՆՐՈՒՔՆԵՐԻ ՆԿԱՏՄԱՄԲ ՈՒՇԱԴՐՈՒԹՅՈՒՆ
+          </span>
+        </div>
+
+        <div class="quality">
+          <strong>03</strong>
+          <span
+            data-hy="ԼԱՎ ԵՐԱԺՇՏԱԿԱՆ ՃԱՇԱԿ"
+            data-en="GOOD MUSIC">
+            ԼԱՎ ԵՐԱԺՇՏԱԿԱՆ ՃԱՇԱԿ
+          </span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- QUOTE -->
+
+<section class="quote-section">
+
+  <div class="container quote reveal">
+
+    <div class="quote-mark">“</div>
+
+    <div
+      class="quote-text"
+      data-hy="Իրական շքեղությունը աղմկոտ չէ։<br><em>Այն զգացվում է մանրուքների մեջ։</em>"
+      data-en="True luxury is never loud.<br><em>It lives in the details.</em>">
+
+      Իրական շքեղությունը աղմկոտ չէ։<br>
+      <em>Այն զգացվում է մանրուքների մեջ։</em>
+
+    </div>
+
+    <div class="quote-author">
+      BARBER ARMAN
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- SERVICES -->
 
 <section id="services">
 
@@ -28,9 +2028,9 @@
 
       <p
         class="section-text"
-        data-hy="Տղամարդկանց մազերի և մորուքի խնամք՝ անհատական մոտեցմամբ, ճշգրիտ աշխատանքով և մանրուքների նկատմամբ ուշադրությամբ։"
-        data-en="Men's hair and beard grooming with a personal approach, precision and attention to detail.">
-        Տղամարդկանց մազերի և մորուքի խնամք՝ անհատական մոտեցմամբ, ճշգրիտ աշխատանքով և մանրուքների նկատմամբ ուշադրությամբ։
+        data-hy="Միայն տղամարդկանց մազերի և մորուքի ծառայություններ՝ անհատական մոտեցմամբ և ցանկալի ոճին համապատասխան։"
+        data-en="Men's hair and beard services with a personal approach tailored to your style.">
+        Միայն տղամարդկանց մազերի և մորուքի ծառայություններ՝ անհատական մոտեցմամբ և ցանկալի ոճին համապատասխան։
       </p>
 
     </div>
@@ -39,13 +2039,9 @@
     <div class="services-grid">
 
 
-      <!-- 01 -->
-
       <article class="service reveal">
 
-        <div class="service-number">
-          01
-        </div>
+        <div class="service-number">01</div>
 
         <h3
           data-hy="Միայն մազ"
@@ -59,16 +2055,16 @@
           Տղամարդկանց սանրվածք՝ ձևի, ծավալի և վերջնական styling-ի ճիշտ համադրությամբ։
         </p>
 
+        <div class="service-price">
+          2,000 ֏
+        </div>
+
       </article>
 
 
-      <!-- 02 -->
-
       <article class="service reveal">
 
-        <div class="service-number">
-          02
-        </div>
+        <div class="service-number">02</div>
 
         <h3
           data-hy="Մազ + ծոծրակ"
@@ -78,20 +2074,20 @@
 
         <p
           data-hy="Սանրվածք և կոկիկ ծոծրակի մաքրում՝ հավաք ու ավարտուն տեսքի համար։"
-          data-en="Haircut and precise neck cleanup for a clean, finished look.">
+          data-en="Haircut and precise neck cleanup for a clean finished look.">
           Սանրվածք և կոկիկ ծոծրակի մաքրում՝ հավաք ու ավարտուն տեսքի համար։
         </p>
+
+        <div class="service-price">
+          2,000 ֏
+        </div>
 
       </article>
 
 
-      <!-- 03 -->
-
       <article class="service reveal">
 
-        <div class="service-number">
-          03
-        </div>
+        <div class="service-number">03</div>
 
         <h3
           data-hy="Մազ + մորուք"
@@ -105,16 +2101,16 @@
           Մազերի և մորուքի համադրված ձևավորում՝ ամբողջական, հավասարակշռված կերպարի համար։
         </p>
 
+        <div class="service-price">
+          4,000 ֏
+        </div>
+
       </article>
 
 
-      <!-- 04 -->
-
       <article class="service reveal">
 
-        <div class="service-number">
-          04
-        </div>
+        <div class="service-number">04</div>
 
         <h3
           data-hy="Միայն ծոծրակ"
@@ -123,21 +2119,21 @@
         </h3>
 
         <p
-          data-hy="Արագ և կոկիկ ծոծրակի մաքրում՝ սանրվածքի թարմ և հավաք տեսքը պահպանելու համար։"
-          data-en="A clean neck finish to keep your haircut looking fresh and sharp.">
-          Արագ և կոկիկ ծոծրակի մաքրում՝ սանրվածքի թարմ և հավաք տեսքը պահպանելու համար։
+          data-hy="Կոկիկ ծոծրակի մաքրում՝ սանրվածքի թարմ ու հավաք տեսքը պահպանելու համար։"
+          data-en="A clean neck finish to keep your haircut fresh and sharp.">
+          Կոկիկ ծոծրակի մաքրում՝ սանրվածքի թարմ ու հավաք տեսքը պահպանելու համար։
         </p>
+
+        <div class="service-price">
+          1,000 ֏
+        </div>
 
       </article>
 
 
-      <!-- 05 -->
-
       <article class="service full reveal">
 
-        <div class="service-number">
-          05
-        </div>
+        <div class="service-number">05</div>
 
         <h3
           data-hy="Մորուքի խնամք"
@@ -146,12 +2142,108 @@
         </h3>
 
         <p
-          data-hy="Մորուքի ձևավորում և խնամք՝ հաշվի առնելով դեմքի ձևը, մորուքի կառուցվածքը, երկարությունն ու ընդհանուր վիճակը։"
-          data-en="Personalized beard shaping and grooming based on face shape, beard structure, length and overall condition.">
-          Մորուքի ձևավորում և խնամք՝ հաշվի առնելով դեմքի ձևը, մորուքի կառուցվածքը, երկարությունն ու ընդհանուր վիճակը։
+          data-hy="Մորուքի ձևավորում և խնամք՝ հաշվի առնելով մորուքի երկարությունը, խտությունը և ընդհանուր վիճակը։"
+          data-en="Personalized beard grooming based on beard length, density and overall condition.">
+          Մորուքի ձևավորում և խնամք՝ հաշվի առնելով մորուքի երկարությունը, խտությունը և ընդհանուր վիճակը։
         </p>
 
+        <div
+          class="service-price"
+          data-hy="ԱՆՀԱՏԱԿԱՆ"
+          data-en="CUSTOM">
+          ԱՆՀԱՏԱԿԱՆ
+        </div>
+
       </article>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- STYLE -->
+
+<section class="style" id="style">
+
+  <div class="container">
+
+    <div class="reveal">
+
+      <div
+        class="section-label"
+        data-hy="BARBER STYLE"
+        data-en="BARBER STYLE">
+        BARBER STYLE
+      </div>
+
+      <h2
+        class="section-title"
+        data-hy="Տղամարդկանց <em>ոճ և խնամք</em>"
+        data-en="Men's <em>style & grooming</em>">
+        Տղամարդկանց <em>ոճ և խնամք</em>
+      </h2>
+
+      <p
+        class="style-note"
+        data-hy="Ոճը սկսվում է ճիշտ ձևից, բայց ավարտվում է այն զգացողությամբ, որով դուրս ես գալիս սրահից։"
+        data-en="Style begins with the right shape, but ends with the feeling you leave the chair with.">
+        Ոճը սկսվում է ճիշտ ձևից, բայց ավարտվում է այն զգացողությամբ, որով դուրս ես գալիս սրահից։
+      </p>
+
+    </div>
+
+
+    <div class="gallery">
+
+
+      <div class="gallery-item large reveal">
+
+        <img
+          src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=1200&q=85"
+          alt="Men's barber style"
+          loading="lazy"
+          onerror="this.parentElement.remove()"
+        >
+
+        <div class="gallery-overlay">
+          <span>Modern Men's Style</span>
+        </div>
+
+      </div>
+
+
+      <div class="gallery-item reveal">
+
+        <img
+          src="https://images.unsplash.com/photo-1599351431202-1e0f0d7f6f8d?auto=format&fit=crop&w=900&q=85"
+          alt="Men's grooming"
+          loading="lazy"
+          onerror="this.parentElement.remove()"
+        >
+
+        <div class="gallery-overlay">
+          <span>Precision</span>
+        </div>
+
+      </div>
+
+
+      <div class="gallery-item reveal">
+
+        <img
+          src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=900&q=85"
+          alt="Barber grooming"
+          loading="lazy"
+          onerror="this.parentElement.remove()"
+        >
+
+        <div class="gallery-overlay">
+          <span>Grooming</span>
+        </div>
+
+      </div>
 
 
     </div>
@@ -159,3 +2251,757 @@
   </div>
 
 </section>
+
+
+<!-- PRICES — THE ONLY PRICE LIST -->
+
+<section class="prices" id="prices">
+
+  <div class="container price-layout">
+
+    <div class="price-intro reveal">
+
+      <div
+        class="section-label"
+        data-hy="ԳՆԵՐ"
+        data-en="PRICES">
+        ԳՆԵՐ
+      </div>
+
+      <h2
+        class="section-title"
+        data-hy="Պարզ <em>և թափանցիկ</em>"
+        data-en="Simple <em>& clear</em>">
+        Պարզ <em>և թափանցիկ</em>
+      </h2>
+
+      <p
+        data-hy="Մորուքի խնամքի արժեքը որոշվում է անհատական՝ հաշվի առնելով մորուքի երկարությունը, խտությունը և ընդհանուր վիճակը։"
+        data-en="Beard grooming is individually priced according to length, density and condition.">
+        Մորուքի խնամքի արժեքը որոշվում է անհատական՝ հաշվի առնելով մորուքի երկարությունը, խտությունը և ընդհանուր վիճակը։
+      </p>
+
+    </div>
+
+
+    <div class="price-list reveal">
+
+
+      <div class="price-row">
+
+        <div>
+          <div
+            class="price-name"
+            data-hy="Միայն մազ"
+            data-en="Haircut">
+            Միայն մազ
+          </div>
+
+          <span
+            class="price-desc"
+            data-hy="Տղամարդկանց սանրվածք"
+            data-en="Men's haircut">
+            Տղամարդկանց սանրվածք
+          </span>
+        </div>
+
+        <div class="price-value">
+          2,000 ֏
+        </div>
+
+      </div>
+
+
+      <div class="price-row">
+
+        <div>
+          <div
+            class="price-name"
+            data-hy="Մազ + ծոծրակ"
+            data-en="Hair + Neck">
+            Մազ + ծոծրակ
+          </div>
+
+          <span
+            class="price-desc"
+            data-hy="Սանրվածք + ծոծրակի մաքրում"
+            data-en="Haircut + neck cleanup">
+            Սանրվածք + ծոծրակի մաքրում
+          </span>
+        </div>
+
+        <div class="price-value">
+          2,000 ֏
+        </div>
+
+      </div>
+
+
+      <div class="price-row">
+
+        <div>
+          <div
+            class="price-name"
+            data-hy="Միայն ծոծրակ"
+            data-en="Neck Cleanup">
+            Միայն ծոծրակ
+          </div>
+
+          <span
+            class="price-desc"
+            data-hy="Կոկիկ ավարտ"
+            data-en="Clean finish">
+            Կոկիկ ավարտ
+          </span>
+        </div>
+
+        <div class="price-value">
+          1,000 ֏
+        </div>
+
+      </div>
+
+
+      <div class="price-row highlight">
+
+        <div>
+          <div
+            class="price-name"
+            data-hy="Մազ + մորուք"
+            data-en="Hair + Beard">
+            Մազ + մորուք
+          </div>
+
+          <span
+            class="price-desc"
+            data-hy="Ամբողջական կերպար"
+            data-en="Complete grooming">
+            Ամբողջական կերպար
+          </span>
+        </div>
+
+        <div class="price-value">
+          4,000 ֏
+        </div>
+
+      </div>
+
+
+      <div class="price-row">
+
+        <div>
+          <div
+            class="price-name"
+            data-hy="Մորուքի խնամք"
+            data-en="Beard Grooming">
+            Մորուքի խնամք
+          </div>
+
+          <span
+            class="price-desc"
+            data-hy="Անհատական արժեք"
+            data-en="Individual pricing">
+            Անհատական արժեք
+          </span>
+        </div>
+
+        <div
+          class="price-value"
+          data-hy="ԱՆՀԱՏԱԿԱՆ"
+          data-en="CUSTOM">
+          ԱՆՀԱՏԱԿԱՆ
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ATMOSPHERE -->
+
+<section>
+
+  <div class="container">
+
+    <div class="reveal">
+
+      <div
+        class="section-label"
+        data-hy="ՄԹՆՈԼՈՐՏ"
+        data-en="THE EXPERIENCE">
+        ՄԹՆՈԼՈՐՏ
+      </div>
+
+      <h2
+        class="section-title"
+        data-hy="Սանրվածքից <em>ավելին</em>"
+        data-en="More than a <em>haircut</em>">
+        Սանրվածքից <em>ավելին</em>
+      </h2>
+
+      <p
+        class="section-text"
+        data-hy="Նոր վերանորոգված, հարմարավետ սրահ, հանգիստ միջավայր և լավ երաժշտական ճաշակ։ Այստեղ կարևոր է ոչ միայն արդյունքը, այլ ամբողջ փորձառությունը։"
+        data-en="A newly renovated, comfortable salon with a calm atmosphere and carefully selected music. The experience matters as much as the result.">
+        Նոր վերանորոգված, հարմարավետ սրահ, հանգիստ միջավայր և լավ երաժշտական ճաշակ։ Այստեղ կարևոր է ոչ միայն արդյունքը, այլ ամբողջ փորձառությունը։
+      </p>
+
+    </div>
+
+
+    <div class="atmosphere-grid">
+
+
+      <div class="atmosphere-card reveal">
+
+        <div class="icon">✦</div>
+
+        <h3
+          data-hy="Նոր սրահ"
+          data-en="New Space">
+          Նոր սրահ
+        </h3>
+
+        <p
+          data-hy="Նոր վերանորոգված պայմաններ՝ մաքուր, ժամանակակից և հարմարավետ միջավայրով։"
+          data-en="A newly renovated, clean, modern and comfortable environment.">
+          Նոր վերանորոգված պայմաններ՝ մաքուր, ժամանակակից և հարմարավետ միջավայրով։
+        </p>
+
+      </div>
+
+
+      <div class="atmosphere-card reveal">
+
+        <div class="icon">◌</div>
+
+        <h3
+          data-hy="Հանգիստ մթնոլորտ"
+          data-en="Calm Atmosphere">
+          Հանգիստ մթնոլորտ
+        </h3>
+
+        <p
+          data-hy="Հավասարակշռված սպասարկում՝ առանց ավելորդ շտապելու և աղմուկի։"
+          data-en="A balanced experience without unnecessary rush or noise.">
+          Հավասարակշռված սպասարկում՝ առանց ավելորդ շտապելու և աղմուկի։
+        </p>
+
+      </div>
+
+
+      <div class="atmosphere-card reveal">
+
+        <div class="icon">♪</div>
+
+        <h3
+          data-hy="Լավ երաժշտություն"
+          data-en="Good Music">
+          Լավ երաժշտություն
+        </h3>
+
+        <p
+          data-hy="Երաժշտական ճաշակը սրահի ընդհանուր մթնոլորտի մի մասն է։"
+          data-en="Music is part of the atmosphere and overall experience.">
+          Երաժշտական ճաշակը սրահի ընդհանուր մթնոլորտի մի մասն է։
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- LUXURY QUOTE -->
+
+<section class="mini-quote">
+
+  <div class="container reveal">
+
+    <div
+      class="mini-quote-text"
+      data-hy="Ոճը նորաձևությանը հետևելը չէ։<br><span>Ոճը սեփական ներկայությունը ճանաչելն է։</span>"
+      data-en="Style is not following fashion.<br><span>Style is knowing your own presence.</span>">
+
+      Ոճը նորաձևությանը հետևելը չէ։<br>
+      <span>Ոճը սեփական ներկայությունը ճանաչելն է։</span>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- CTA -->
+
+<section class="cta">
+
+  <div class="container reveal">
+
+    <div
+      class="section-label"
+      data-hy="ՊԱՏՐԱՍՏ ԵՍ"
+      data-en="READY?">
+      ՊԱՏՐԱՍՏ ԵՍ
+    </div>
+
+    <h2
+      class="cta-title"
+      data-hy="Քո ոճը։<br><em>Քո ներկայությունը։</em>"
+      data-en="Your style.<br><em>Your presence.</em>">
+      Քո ոճը։<br>
+      <em>Քո ներկայությունը։</em>
+    </h2>
+
+    <p
+      data-hy="Զանգահարիր և պայմանավորվիր այցելության համար։"
+      data-en="Call and book your appointment.">
+      Զանգահարիր և պայմանավորվիր այցելության համար։
+    </p>
+
+    <a href="tel:+37498044343" class="button gold">
+      <span>098 044 343</span>
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section class="contact" id="contact">
+
+  <div class="contact-grid">
+
+
+    <div class="container contact-info reveal">
+
+      <div
+        class="section-label"
+        data-hy="ԿԱՊ"
+        data-en="CONTACT">
+        ԿԱՊ
+      </div>
+
+      <h2
+        class="section-title"
+        data-hy="Հանդիպենք <em>աթոռին</em>"
+        data-en="See you in the <em>chair</em>">
+        Հանդիպենք <em>աթոռին</em>
+      </h2>
+
+
+      <div class="contact-details">
+
+
+        <div class="contact-item">
+
+          <small
+            data-hy="ՀԵՌԱԽՈՍ"
+            data-en="PHONE">
+            ՀԵՌԱԽՈՍ
+          </small>
+
+          <a href="tel:+37498044343">
+            098 044 343
+          </a>
+
+        </div>
+
+
+        <div class="contact-item">
+
+          <small
+            data-hy="ՀԱՍՑԵ"
+            data-en="LOCATION">
+            ՀԱՍՑԵ
+          </small>
+
+          <strong
+            data-hy="Արարատի մարզ, գյուղ Այգավան"
+            data-en="Aygavan, Ararat Province">
+            Արարատի մարզ, գյուղ Այգավան
+          </strong>
+
+        </div>
+
+
+        <div class="contact-item">
+
+          <small
+            data-hy="ՄԱՍՆԱԳԻՏԱՑՈՒՄ"
+            data-en="SPECIALTY">
+            ՄԱՍՆԱԳԻՏԱՑՈՒՄ
+          </small>
+
+          <strong>
+            Men's Hair & Grooming
+          </strong>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+
+    <div class="map-wrap">
+
+      <iframe
+        src="https://www.google.com/maps?q=39.8735,44.66919&z=15&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Barber Arman — Aygavan">
+      </iframe>
+
+      <div class="map-overlay">
+
+        <small
+          data-hy="ԳՏՆՎԵԼՈՒ ՎԱՅՐԸ"
+          data-en="LOCATION">
+          ԳՏՆՎԵԼՈՒ ՎԱՅՐԸ
+        </small>
+
+        <strong
+          data-hy="Այգավան • Արարատի մարզ"
+          data-en="Aygavan • Ararat Province">
+          Այգավան • Արարատի մարզ
+        </strong>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+  <div class="container footer">
+
+    <div class="footer-logo">
+      ARMAN
+    </div>
+
+    <div
+      class="footer-copy"
+      data-hy="© 2026 BARBER ARMAN"
+      data-en="© 2026 BARBER ARMAN">
+      © 2026 BARBER ARMAN
+    </div>
+
+    <a href="#home" class="top">↑</a>
+
+  </div>
+
+</footer>
+
+
+<script>
+
+/* =========================
+   LOADER
+========================= */
+
+window.addEventListener("load",()=>{
+
+  setTimeout(()=>{
+
+    document
+      .getElementById("loader")
+      .classList.add("hide");
+
+  },700);
+
+});
+
+
+/* =========================
+   HEADER
+========================= */
+
+const header =
+  document.getElementById("header");
+
+window.addEventListener("scroll",()=>{
+
+  header.classList.toggle(
+    "scrolled",
+    window.scrollY > 50
+  );
+
+});
+
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+const menuButton =
+  document.getElementById("menuButton");
+
+const navLinks =
+  document.getElementById("navLinks");
+
+menuButton.addEventListener("click",()=>{
+
+  navLinks.classList.toggle("open");
+
+  document.body.classList.toggle(
+    "menu-open"
+  );
+
+});
+
+
+document
+.querySelectorAll(".nav-links a")
+.forEach(link=>{
+
+  link.addEventListener("click",()=>{
+
+    navLinks.classList.remove("open");
+
+    document.body.classList.remove(
+      "menu-open"
+    );
+
+  });
+
+});
+
+
+/* =========================
+   LANGUAGE SWITCH
+========================= */
+
+const languages =
+  document.querySelectorAll(".lang");
+
+function setLanguage(language){
+
+  document
+    .querySelectorAll("[data-hy]")
+    .forEach(element=>{
+
+      const value =
+        element.dataset[language];
+
+      if(value){
+        element.innerHTML=value;
+      }
+
+    });
+
+  document.documentElement.lang =
+    language === "hy"
+      ? "hy"
+      : "en";
+
+  languages.forEach(button=>{
+
+    button.classList.toggle(
+      "active",
+      button.dataset.lang === language
+    );
+
+  });
+
+}
+
+languages.forEach(button=>{
+
+  button.addEventListener("click",()=>{
+
+    setLanguage(
+      button.dataset.lang
+    );
+
+  });
+
+});
+
+
+/* =========================
+   SCROLL REVEAL
+========================= */
+
+const revealElements =
+  document.querySelectorAll(".reveal");
+
+const observer =
+  new IntersectionObserver(
+    entries=>{
+
+      entries.forEach(entry=>{
+
+        if(!entry.isIntersecting){
+          return;
+        }
+
+        entry.target.classList.add(
+          "visible"
+        );
+
+        observer.unobserve(
+          entry.target
+        );
+
+      });
+
+    },
+    {
+      threshold:.12
+    }
+  );
+
+revealElements.forEach(element=>{
+  observer.observe(element);
+});
+
+
+/* =========================
+   CUSTOM CURSOR
+========================= */
+
+const cursor =
+  document.querySelector(".cursor");
+
+const ring =
+  document.querySelector(".cursor-ring");
+
+let mouseX=0;
+let mouseY=0;
+
+let ringX=0;
+let ringY=0;
+
+document.addEventListener(
+  "mousemove",
+  event=>{
+
+    mouseX=event.clientX;
+    mouseY=event.clientY;
+
+    cursor.style.left =
+      mouseX+"px";
+
+    cursor.style.top =
+      mouseY+"px";
+
+  }
+);
+
+function animateCursor(){
+
+  ringX +=
+    (mouseX-ringX)*.12;
+
+  ringY +=
+    (mouseY-ringY)*.12;
+
+  ring.style.left =
+    ringX+"px";
+
+  ring.style.top =
+    ringY+"px";
+
+  requestAnimationFrame(
+    animateCursor
+  );
+
+}
+
+animateCursor();
+
+
+/* =========================
+   HERO PARALLAX
+========================= */
+
+const heroPhoto =
+  document.querySelector(".hero-photo");
+
+window.addEventListener("scroll",()=>{
+
+  if(
+    heroPhoto &&
+    window.innerWidth > 900
+  ){
+
+    heroPhoto.style.transform =
+      `translateY(${window.scrollY*.07}px) scale(1.035)`;
+
+  }
+
+});
+
+
+/* =========================
+   STAGGER ANIMATIONS
+========================= */
+
+document
+.querySelectorAll(".service")
+.forEach((item,index)=>{
+
+  item.style.transitionDelay =
+    `${index*70}ms`;
+
+});
+
+
+document
+.querySelectorAll(".atmosphere-card")
+.forEach((item,index)=>{
+
+  item.style.transitionDelay =
+    `${index*100}ms`;
+
+});
+
+
+/* =========================
+   IMAGE SAFETY
+========================= */
+
+document
+.querySelectorAll("img")
+.forEach(image=>{
+
+  image.addEventListener(
+    "error",
+    ()=>{
+
+      const parent =
+        image.closest(".gallery-item");
+
+      if(parent){
+        parent.remove();
+      }
+
+    }
+  );
+
+});
+
+</script>
+
+</body>
+</html>
