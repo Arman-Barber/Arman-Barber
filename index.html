@@ -129,7 +129,10 @@ button{
 }
 
 @keyframes pulseLine{
-  50%{transform:scaleX:.35;opacity:.4}
+  50%{
+    transform:scaleX(.35);
+    opacity:.4;
+  }
 }
 
 
@@ -364,11 +367,11 @@ header.scrolled{
   font-weight:500;
 
   font-size:
-    clamp(58px,7vw,92px);
+    clamp(48px,6vw,78px);
 
-  line-height:.8;
+  line-height:.88;
 
-  max-width:520px;
+  max-width:440px;
 
   opacity:0;
   animation:heroIn .9s .35s forwards;
@@ -381,7 +384,7 @@ header.scrolled{
 .hero-title .gold{
   color:var(--gold2);
   font-style:italic;
-  margin-left:50px;
+  margin-left:32px;
 }
 
 .hero-phone{
@@ -571,7 +574,7 @@ section{
 
 
 /* =========================================================
-   IMPORTANT INFO BAR
+   IMPORTANT INFO
 ========================================================= */
 
 .quick-info{
@@ -707,7 +710,7 @@ section{
 ========================================================= */
 
 .quote-section{
-  padding:95px 0;
+  padding:105px 0;
   background:#080808;
   overflow:hidden;
 }
@@ -729,7 +732,7 @@ section{
 .quote-text{
   font-family:var(--serif);
   font-size:clamp(32px,4vw,52px);
-  line-height:1.05;
+  line-height:1.08;
   color:#e5dfd3;
 }
 
@@ -746,7 +749,7 @@ section{
 
 
 /* =========================================================
-   SERVICES
+   SERVICES — NO PRICES HERE
 ========================================================= */
 
 .services-heading{
@@ -799,25 +802,13 @@ section{
   line-height:1.9;
 }
 
-.service-price{
-  position:absolute;
-  right:29px;
-  top:31px;
-
-  color:var(--gold2);
-  font-family:var(--serif);
-  font-size:26px;
-
-  white-space:nowrap;
-}
-
 .service.full{
   grid-column:1/-1;
 }
 
 
 /* =========================================================
-   STYLE / GALLERY
+   STYLE / PORTFOLIO
 ========================================================= */
 
 .style{
@@ -837,8 +828,8 @@ section{
 
   display:grid;
 
-  grid-template-columns:1.2fr .8fr;
-  grid-template-rows:260px 260px;
+  grid-template-columns:1.25fr .75fr;
+  grid-template-rows:270px 270px;
 
   gap:12px;
 }
@@ -864,8 +855,8 @@ section{
 }
 
 .gallery-item:hover img{
-  transform:scale(1.06);
-  filter:brightness(.6);
+  transform:scale(1.05);
+  filter:brightness(.72);
 }
 
 .gallery-overlay{
@@ -1301,7 +1292,8 @@ footer{
   }
 
   .hero-title{
-    font-size:68px;
+    font-size:64px;
+    max-width:350px;
   }
 
   .hero-title .gold{
@@ -1366,11 +1358,15 @@ footer{
 
   .gallery{
     grid-template-columns:1fr;
-    grid-template-rows:330px 230px 230px;
+    grid-template-rows:430px;
   }
 
   .gallery-item.large{
     grid-row:auto;
+  }
+
+  .gallery-item:not(.large){
+    display:none;
   }
 
   .prices{
@@ -1411,7 +1407,7 @@ footer{
   }
 
   .hero-title{
-    font-size:60px;
+    font-size:56px;
   }
 
   .hero-phone{
@@ -1551,9 +1547,7 @@ footer{
 <main>
 
 
-<!-- =========================================================
- HERO
-========================================================= -->
+<!-- HERO -->
 
 <section class="hero" id="home">
 
@@ -1562,7 +1556,7 @@ footer{
   <img
     class="hero-photo"
     src="https://cdn.shopify.com/s/files/1/0760/6314/6136/files/5188419493024176446.jpg?v=1786804497"
-    alt="Barber Arman"
+    alt="Barber Arman — men's barber"
   >
 
 
@@ -1654,9 +1648,7 @@ footer{
 </section>
 
 
-<!-- =========================================================
- IMPORTANT INFO
-========================================================= -->
+<!-- IMPORTANT INFO -->
 
 <section class="quick-info">
 
@@ -1736,9 +1728,7 @@ footer{
 </section>
 
 
-<!-- =========================================================
- ABOUT
-========================================================= -->
+<!-- ABOUT -->
 
 <section class="about" id="about">
 
@@ -1750,7 +1740,7 @@ footer{
       <img
         class="about-image"
         src="https://cdn.shopify.com/s/files/1/0760/6314/6136/files/5188419493024176446.jpg?v=1786804497"
-        alt="Barber Arman"
+        alt="Arman — Barber"
       >
 
       <div class="about-frame"></div>
@@ -1776,10 +1766,10 @@ footer{
 
       <h2
         class="section-title"
-        data-hy="Պարզ ոճ։<br><em>Ճիշտ մանրուքներ։</em>"
-        data-en="Simple style.<br><em>Perfect details.</em>">
+        data-hy="Հանգիստ մոտեցում։<br><em>Ճիշտ մանրուքներ։</em>"
+        data-en="Calm approach.<br><em>Precise details.</em>">
 
-        Պարզ ոճ։<br>
+        Հանգիստ մոտեցում։<br>
         <em>Ճիշտ մանրուքներ։</em>
 
       </h2>
@@ -1787,10 +1777,10 @@ footer{
 
       <p
         class="about-copy"
-        data-hy="Ես Արմանն եմ։ Աշխատում եմ միայն տղամարդկանց մազերի և մորուքի ուղղությամբ։ Ինձ համար լավ արդյունքը միայն գեղեցիկ սանրվածքը չէ․ կարևոր է նաև այն հանգիստ ու վստահ զգացողությունը, որով հաճախորդը հեռանում է սրահից։"
+        data-hy="Ես Արմանն եմ։ Աշխատում եմ միայն տղամարդկանց մազերի և մորուքի ուղղությամբ։ Ինձ համար լավ արդյունքը միայն սանրվածքը չէ․ կարևոր է նաև այն հանգիստ ու վստահ զգացողությունը, որով հաճախորդը հեռանում է սրահից։"
         data-en="I'm Arman. I specialize exclusively in men's hair and beard grooming. For me, a good result is more than a haircut — it is also the calm and confident feeling a client leaves with.">
 
-        Ես Արմանն եմ։ Աշխատում եմ միայն տղամարդկանց մազերի և մորուքի ուղղությամբ։ Ինձ համար լավ արդյունքը միայն գեղեցիկ սանրվածքը չէ․ կարևոր է նաև այն հանգիստ ու վստահ զգացողությունը, որով հաճախորդը հեռանում է սրահից։
+        Ես Արմանն եմ։ Աշխատում եմ միայն տղամարդկանց մազերի և մորուքի ուղղությամբ։ Ինձ համար լավ արդյունքը միայն սանրվածքը չէ․ կարևոր է նաև այն հանգիստ ու վստահ զգացողությունը, որով հաճախորդը հեռանում է սրահից։
 
       </p>
 
@@ -1833,9 +1823,7 @@ footer{
 </section>
 
 
-<!-- =========================================================
- QUOTE
-========================================================= -->
+<!-- LUXURY QUOTE -->
 
 <section class="quote-section">
 
@@ -1847,11 +1835,11 @@ footer{
 
     <div
       class="quote-text"
-      data-hy="Լավ սանրվածքը չի փորձում գրավել ուշադրությունը։<br><em>Այն պարզապես ճիշտ է նստում քեզ վրա։</em>"
-      data-en="A good haircut doesn't ask for attention.<br><em>It simply feels right on you.</em>">
+      data-hy="Իսկական ոճը չի աղմկում։<br><em>Այն ճանաչվում է լռության մեջ։</em>"
+      data-en="True style never needs to be loud.<br><em>It is recognized in silence.</em>">
 
-      Լավ սանրվածքը չի փորձում գրավել ուշադրությունը։<br>
-      <em>Այն պարզապես ճիշտ է նստում քեզ վրա։</em>
+      Իսկական ոճը չի աղմկում։<br>
+      <em>Այն ճանաչվում է լռության մեջ։</em>
 
     </div>
 
@@ -1864,9 +1852,7 @@ footer{
 </section>
 
 
-<!-- =========================================================
- SERVICES
-========================================================= -->
+<!-- SERVICES -->
 
 <section id="services">
 
@@ -1900,10 +1886,10 @@ footer{
 
       <p
         class="section-text"
-        data-hy="Միայն տղամարդկանց մազերի և մորուքի ծառայություններ՝ ըստ քո ցանկալի ոճի։"
-        data-en="Men's hair and beard services tailored to your personal style.">
+        data-hy="Միայն տղամարդկանց մազերի և մորուքի ծառայություններ՝ անհատական մոտեցմամբ և քո ցանկալի ոճին համապատասխան։"
+        data-en="Men's hair and beard services with a personal approach and a style tailored to you.">
 
-        Միայն տղամարդկանց մազերի և մորուքի ծառայություններ՝ ըստ քո ցանկալի ոճի։
+        Միայն տղամարդկանց մազերի և մորուքի ծառայություններ՝ անհատական մոտեցմամբ և քո ցանկալի ոճին համապատասխան։
 
       </p>
 
@@ -1935,10 +1921,6 @@ footer{
 
         </p>
 
-        <div class="service-price">
-          2,000 ֏
-        </div>
-
       </article>
 
 
@@ -1964,10 +1946,6 @@ footer{
 
         </p>
 
-        <div class="service-price">
-          2,000 ֏
-        </div>
-
       </article>
 
 
@@ -1986,16 +1964,12 @@ footer{
         </h3>
 
         <p
-          data-hy="Մազերի և մորուքի համադրված ձևավորում՝ ամբողջական կերպարի համար։"
-          data-en="Coordinated hair and beard shaping for a complete look.">
+          data-hy="Մազերի և մորուքի համադրված ձևավորում՝ ամբողջական, հավասարակշռված կերպարի համար։"
+          data-en="Coordinated hair and beard shaping for a complete, balanced look.">
 
-          Մազերի և մորուքի համադրված ձևավորում՝ ամբողջական կերպարի համար։
+          Մազերի և մորուքի համադրված ձևավորում՝ ամբողջական, հավասարակշռված կերպարի համար։
 
         </p>
-
-        <div class="service-price">
-          4,000 ֏
-        </div>
 
       </article>
 
@@ -2022,10 +1996,6 @@ footer{
 
         </p>
 
-        <div class="service-price">
-          1,000 ֏
-        </div>
-
       </article>
 
 
@@ -2044,21 +2014,12 @@ footer{
         </h3>
 
         <p
-          data-hy="Մորուքի ձևավորում և խնամք՝ անհատական մոտեցմամբ։ Արժեքը կախված է մորուքի երկարությունից, խտությունից և վիճակից։"
-          data-en="Personalized beard grooming. The price depends on beard length, density and condition.">
+          data-hy="Մորուքի ձևավորում և խնամք՝ անհատական մոտեցմամբ։ Արժեքը որոշվում է ըստ մորուքի երկարության, խտության և ընդհանուր վիճակի։"
+          data-en="Personalized beard grooming. Pricing depends on beard length, density and overall condition.">
 
-          Մորուքի ձևավորում և խնամք՝ անհատական մոտեցմամբ։ Արժեքը կախված է մորուքի երկարությունից, խտությունից և վիճակից։
+          Մորուքի ձևավորում և խնամք՝ անհատական մոտեցմամբ։ Արժեքը որոշվում է ըստ մորուքի երկարության, խտության և ընդհանուր վիճակի։
 
         </p>
-
-        <div
-          class="service-price"
-          data-hy="ԱՆՀԱՏԱԿԱՆ"
-          data-en="CUSTOM">
-
-          ԱՆՀԱՏԱԿԱՆ
-
-        </div>
 
       </article>
 
@@ -2070,9 +2031,7 @@ footer{
 </section>
 
 
-<!-- =========================================================
- STYLE
-========================================================= -->
+<!-- PORTFOLIO -->
 
 <section class="style" id="style">
 
@@ -2103,10 +2062,10 @@ footer{
 
       <p
         class="style-note"
-        data-hy="Այս լուսանկարները ներկայացնում են barbering-ի ընդհանուր էսթետիկան։ Դրանք Արմանի անձնական աշխատանքների լուսանկարներ չեն։ Իրական portfolio-ն կավելացնենք հենց Արմանի աշխատանքների նկարներով։"
-        data-en="These images represent the general barbering aesthetic. They are not presented as Arman's personal work. His real portfolio can be added later with his own photos.">
+        data-hy="Ճիշտ ձևը, մաքուր գծերը և խնամված ավարտը՝ տղամարդու կերպարի ամենակարևոր մանրուքներից են։"
+        data-en="The right shape, clean lines and a refined finish are among the most important details of a man's look.">
 
-        Այս լուսանկարները ներկայացնում են barbering-ի ընդհանուր էսթետիկան։ Դրանք Արմանի անձնական աշխատանքների լուսանկարներ չեն։ Իրական portfolio-ն կավելացնենք հենց Արմանի աշխատանքների նկարներով։
+        Ճիշտ ձևը, մաքուր գծերը և խնամված ավարտը՝ տղամարդու կերպարի ամենակարևոր մանրուքներից են։
 
       </p>
 
@@ -2116,17 +2075,25 @@ footer{
     <div class="gallery">
 
 
+      <!-- Արմանի տրամադրած իրական լուսանկարը -->
+
       <div class="gallery-item large reveal">
 
         <img
-          src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=1200&q=85"
-          alt="Men's barber style"
-          loading="lazy"
-          onerror="this.parentElement.style.display='none'"
+          src="https://cdn.shopify.com/s/files/1/0760/6314/6136/files/5188419493024176446.jpg?v=1786804497"
+          alt="Barber Arman"
         >
 
         <div class="gallery-overlay">
-          <span>Modern Men's Style</span>
+
+          <span
+            data-hy="Barber Arman"
+            data-en="Barber Arman">
+
+            Barber Arman
+
+          </span>
+
         </div>
 
       </div>
@@ -2134,15 +2101,52 @@ footer{
 
       <div class="gallery-item reveal">
 
-        <img
-          src="https://images.unsplash.com/photo-1599351431202-1e0f0d7f6f8d?auto=format&fit=crop&w=900&q=85"
-          alt="Men's grooming"
-          loading="lazy"
-          onerror="this.parentElement.style.display='none'"
+        <div
+          style="
+            height:100%;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            padding:35px;
+            background:
+              radial-gradient(
+                circle at center,
+                rgba(199,163,91,.13),
+                transparent 60%
+              ),
+              #0d0d0c;
+          "
         >
 
-        <div class="gallery-overlay">
-          <span>Precision</span>
+          <div style="text-align:center;">
+
+            <div
+              style="
+                color:#c7a35b;
+                font-size:9px;
+                letter-spacing:.3em;
+                margin-bottom:15px;
+              "
+            >
+              MEN'S GROOMING
+            </div>
+
+            <div
+              style="
+                font-family:Cormorant Garamond,Georgia,serif;
+                color:#e5c77f;
+                font-size:32px;
+                line-height:1.05;
+              "
+              data-hy="Ճշգրիտ ձև։<br>Անթերի ավարտ։"
+              data-en="Precise shape.<br>Refined finish."
+            >
+              Ճշգրիտ ձև։<br>
+              Անթերի ավարտ։
+            </div>
+
+          </div>
+
         </div>
 
       </div>
@@ -2150,15 +2154,50 @@ footer{
 
       <div class="gallery-item reveal">
 
-        <img
-          src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=900&q=85"
-          alt="Barber grooming"
-          loading="lazy"
-          onerror="this.parentElement.style.display='none'"
+        <div
+          style="
+            height:100%;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            padding:35px;
+            background:
+              linear-gradient(
+                145deg,
+                #14120f,
+                #080808
+              );
+          "
         >
 
-        <div class="gallery-overlay">
-          <span>Grooming</span>
+          <div style="text-align:center;">
+
+            <div
+              style="
+                font-family:Cormorant Garamond,Georgia,serif;
+                font-size:52px;
+                color:#c7a35b;
+                line-height:1;
+                margin-bottom:12px;
+              "
+            >
+              02
+            </div>
+
+            <div
+              style="
+                color:#6d6962;
+                font-size:9px;
+                letter-spacing:.25em;
+              "
+              data-hy="STYLE • DETAIL • BALANCE"
+              data-en="STYLE • DETAIL • BALANCE"
+            >
+              STYLE • DETAIL • BALANCE
+            </div>
+
+          </div>
+
         </div>
 
       </div>
@@ -2171,9 +2210,7 @@ footer{
 </section>
 
 
-<!-- =========================================================
- ONLY PRICE SECTION
-========================================================= -->
+<!-- ONLY PRICE SECTION -->
 
 <section class="prices" id="prices">
 
@@ -2184,10 +2221,10 @@ footer{
 
       <div
         class="section-label"
-        data-hy="ԳՆԵՐ"
-        data-en="PRICES">
+        data-hy="ԳՆԱՑՈՒՑԱԿ"
+        data-en="PRICE LIST">
 
-        ԳՆԵՐ
+        ԳՆԱՑՈՒՑԱԿ
 
       </div>
 
@@ -2383,9 +2420,7 @@ footer{
 </section>
 
 
-<!-- =========================================================
- ATMOSPHERE
-========================================================= -->
+<!-- ATMOSPHERE -->
 
 <section>
 
@@ -2511,9 +2546,7 @@ footer{
 </section>
 
 
-<!-- =========================================================
- MINI QUOTE
-========================================================= -->
+<!-- SECOND QUOTE -->
 
 <section class="mini-quote">
 
@@ -2521,11 +2554,11 @@ footer{
 
     <div
       class="mini-quote-text"
-      data-hy="Քո սանրվածքը կարող է փոխել տեսքը։<br><span>Ճիշտ ոճը՝ զգացողությունը։</span>"
-      data-en="A haircut can change your look.<br><span>The right style changes how you feel.</span>">
+      data-hy="Շքեղությունը ավելին ունենալը չէ։<br><span>Շքեղությունը ճիշտ ընտրելն է։</span>"
+      data-en="Luxury is not about having more.<br><span>It is about choosing well.</span>">
 
-      Քո սանրվածքը կարող է փոխել տեսքը։<br>
-      <span>Ճիշտ ոճը՝ զգացողությունը։</span>
+      Շքեղությունը ավելին ունենալը չէ։<br>
+      <span>Շքեղությունը ճիշտ ընտրելն է։</span>
 
     </div>
 
@@ -2534,9 +2567,7 @@ footer{
 </section>
 
 
-<!-- =========================================================
- CTA
-========================================================= -->
+<!-- CTA -->
 
 <section class="cta">
 
@@ -2586,9 +2617,7 @@ footer{
 </section>
 
 
-<!-- =========================================================
- CONTACT + MAP
-========================================================= -->
+<!-- CONTACT + MAP -->
 
 <section class="contact" id="contact">
 
@@ -2669,8 +2698,12 @@ footer{
 
           </small>
 
-          <strong>
-            Men's Hair & Grooming
+          <strong
+            data-hy="Տղամարդկանց մազեր և խնամք"
+            data-en="Men's Hair & Grooming">
+
+            Տղամարդկանց մազեր և խնամք
+
           </strong>
 
         </div>
@@ -2682,11 +2715,6 @@ footer{
 
 
     <div class="map-wrap">
-
-      <!--
-        Google Maps embed.
-        Centered on Aygavan, Ararat Province.
-      -->
 
       <iframe
         src="https://www.google.com/maps?q=39.8735,44.66919&z=15&output=embed"
@@ -2759,7 +2787,7 @@ footer{
 
 
 /* =========================================================
- LOADER
+   LOADER
 ========================================================= */
 
 window.addEventListener("load",()=>{
@@ -2776,7 +2804,7 @@ window.addEventListener("load",()=>{
 
 
 /* =========================================================
- HEADER
+   HEADER
 ========================================================= */
 
 const header =
@@ -2793,7 +2821,7 @@ window.addEventListener("scroll",()=>{
 
 
 /* =========================================================
- MOBILE MENU
+   MOBILE MENU
 ========================================================= */
 
 const menuButton =
@@ -2831,7 +2859,7 @@ document
 
 
 /* =========================================================
- LANGUAGE
+   LANGUAGE
 ========================================================= */
 
 const languages =
@@ -2882,7 +2910,7 @@ languages.forEach(button=>{
 
 
 /* =========================================================
- SCROLL REVEAL
+   SCROLL REVEAL
 ========================================================= */
 
 const revealElements =
@@ -2920,7 +2948,7 @@ revealElements.forEach(element=>{
 
 
 /* =========================================================
- CURSOR
+   CURSOR
 ========================================================= */
 
 const cursor =
@@ -2975,7 +3003,7 @@ animateCursor();
 
 
 /* =========================================================
- HERO PARALLAX
+   HERO PARALLAX
 ========================================================= */
 
 const heroPhoto =
@@ -2994,7 +3022,7 @@ window.addEventListener("scroll",()=>{
 
 
 /* =========================================================
- STAGGER
+   STAGGER
 ========================================================= */
 
 document
